@@ -37,6 +37,10 @@ champ_idat_sample <- illuminaio::readIDAT("/Library/Frameworks/R.framework/Versi
 source("./temp/champ_import.r")
 misha_champ_import(testDir)
 
+# line 125, M is false for all
+# M <- IDAT[Anno$Annotation[, "M.index"][M.check], ]
+# message("    Extracting UnMeth Matrix...")
+
 ################# didn't go beyond this line #############
 myLoad <- champ.filter() # that worked
 # CpG.GUI() # opens a window - doesn't show anything
