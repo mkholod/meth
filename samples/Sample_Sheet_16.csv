@@ -1,0 +1,16 @@
+[Header],,,,,,,,,,,,,,,
+Investigator Name,,,,,,,,,,,,,,,
+Project Name,,,,,,,,,,,,,,,
+Experiment Name,,,,,,,,,,,,,,,
+Date,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+[Data],,,,,,,,,,,,,,,
+Sample_ID,Sample_Plate,Sample_Group,Pool_ID,Project,Sample_Well,Sentrix_ID,Sentrix_Position,Site,Gender,Age,AnyMet,LN,Dis,Grade,Functional
+GSM3936879,,Sporadic,,,A01,202163530086,R01C01,SINET,f,41,Yes,,Yes,2,
+GSM3936880,,MEN1,,,B01,202163530086,R02C01,DNET,m,56,Yes,,Yes,,gastrinoma
+GSM3936881,,MEN1,,,C01,202163530086,R03C01,PNET,m,65,Yes,Yes,No,1,NFPNET
+GSM3936882,,MEN1,,,D01,202163530086,R04C01,PNET,f,69,Yes,Yes,Yes,1,NFPNET
+GSM3936883,,VHL,,,E01,202163530086,R05C01,PNET,m,37,No,No,No,2,NFPNET
+GSM3936884,,MEN1,,,F01,202163530086,R06C01,DNET,m,37,Yes,Yes,No,2,
+GSM3936885,,Sporadic,,,G01,202163530086,R07C01,SINET,f,28,Yes,Yes,Yes,1,
+GSM3936886,,Sporadic,,,H01,202163530086,R08C01,PNET,f,59,No,No,No,1,NFPNET
