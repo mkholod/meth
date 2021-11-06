@@ -112,8 +112,28 @@ misha_champ_import <- function (directory = getwd(), offset = 100, arraytype = "
   rSd <- matrixStats::colMads(R.Load[control_probe, ])
   gMu <- matrixStats::colMedians(G.Load[control_probe, ])
   gSd <- matrixStats::colMads(G.Load[control_probe, ])
-  rownames(G.Load) <- paste("G", rownames(G.Load), sep = "-")
-  rownames(R.Load) <- paste("R", rownames(R.Load), sep = "-")
+  # rownames(G.Load) <- paste("G", rownames(G.Load), sep = "-")
+  
+  #####
+  #old = rownames(G.Load)[1]
+  #gsub('^([0-9]{1})([0-9]+)$', '\\10\\2', old)
+  #g_new_rownames <- rownames(G.Load)
+  #misha <- sapply(g_new_rownames,function(x) gsub('^([0-9]{1})([0-9]+)$', '\\10\\2', as.character(x)))
+  #g_new_rownames_as_numeric <- do.call(rbind, lapply(g_new_rownames, as.numeric))
+  #g_new_rownames_as_numeric <- g_new_rownames_as_numeric + 9000000
+  #g_new_rownames_plus_9m_as_str <- do.call(rbind, lapply(g_new_rownames_as_numeric, as.character))
+  g_new_rownames <- sapply(rownames(G.Load), function(x) gsub('^([0-9]{1})([0-9]+)$', '\\10\\2', as.character(x)))
+  rownames(G.Load) <- paste("G", g_new_rownames, sep = "-")
+  
+  # rownames(R.Load) <- paste("R", rownames(R.Load), sep = "-")
+  #r_new_rownames <- rownames(R.Load)
+  #r_new_rownames_as_numeric <- do.call(rbind, lapply(r_new_rownames, as.numeric))
+  #r_new_rownames_as_numeric <- r_new_rownames_as_numeric + 9000000
+  #r_new_rownames_plus_9m_as_str <- do.call(rbind, lapply(r_new_rownames_as_numeric, as.character))
+  #rownames(R.Load) <- paste("R", r_new_rownames_plus_9m_as_str, sep = "-")
+  r_new_rownames <- sapply(rownames(R.Load), function(x) gsub('^([0-9]{1})([0-9]+)$', '\\10\\2', as.character(x)))
+  rownames(R.Load) <- paste("G", r_new_rownames, sep = "-")
+  
   IDAT <- rbind(G.Load, R.Load)
   message("\n  Generating Meth and UnMeth Matrix")
   message("    Extracting Meth Matrix...")

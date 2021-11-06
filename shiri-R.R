@@ -47,3 +47,15 @@ myLoad <- champ.filter() # that worked
 champ.QC() # didn't work
 champ.process(directory = testDir)
 # myLoad <- champ.load(testDir)
+
+
+
+###########
+g_new_rownames = c("111","222")
+misha <- sapply(g_new_rownames,function(x) gsub('^([0-9]{1})([0-9]+)$', '\\10\\2', as.character(x)))
+
+############
+## check values in Anno - when sorted the start with [1] "G-10600322" and our samples start with 1600303 we need to add 9,000,000
+m_index <- Anno$Annotation[, "M.index"]
+sorted_m_index <- sort(m_index)
+
