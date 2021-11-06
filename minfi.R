@@ -94,3 +94,16 @@ beta
 #cg01707559             0.091942072       0.390332326       0.079120606      0.3731517510       0.419638495
 
 #------- now trying with our own data
+
+library(minfi)
+library(minfiData)
+library(sva)
+
+baseDir <- "./samples"
+targets <- read.metharray.sheet(baseDir)
+RGSet <- read.metharray.exp(targets = targets)
+phenoData <- pData(RGSet)
+manifest <- getManifest(RGSet)
+MSet <- preprocessRaw(RGSet) 
+RSet <- ratioConvert(MSet, what = "both", keepCN = TRUE)
+beta <- getBeta(RSet)
