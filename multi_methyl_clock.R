@@ -39,4 +39,4 @@ MethylationData <- get_MethylationDataExample()
 MethylationData
 
 age.example55 <- DNAmAge(MethylationData)
-myDNAmAge <- DNAmAge(myData)
+myDNAmAge <- DNAmAge(myData) # this is the actual line
