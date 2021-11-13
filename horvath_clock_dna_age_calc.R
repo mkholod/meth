@@ -4,7 +4,7 @@
 install.packages("WGCNA")
 install.packages("sqldf")
 
-# LOAD FILE
+# LOAD FILE 
 # Copy and pase the following R software code
 # Use forward slashes /”, as R will misread filepaths with backslashes
 #setwd("C:/Users/SHorvath/Documents/DNAmAge/Example55")
