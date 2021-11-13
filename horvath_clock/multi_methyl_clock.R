@@ -20,7 +20,7 @@ library(GEOquery)
 
 # misha
 library(sqldf)
-x=read.csv.sql("beta1.csv")
+myData=read.csv.sql("beta1.csv")
 toBetas=FALSE # x already contains betas
 normalize=FALSE # because it's time consuming
 fastImp=TRUE
@@ -37,3 +37,6 @@ commonClockCpgs(cpgs.missing.GA, "Bohlin" )
 library(tidyverse)
 MethylationData <- get_MethylationDataExample()
 MethylationData
+
+age.example55 <- DNAmAge(MethylationData)
+myDNAmAge <- DNAmAge(myData)
