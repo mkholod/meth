@@ -74,6 +74,6 @@ metadata_file <- dataOnly
 myDNAmAge_with_metadata <- myDNAmAge
 myDNAmAge_with_metadata <- cbind(myDNAmAge_with_metadata, metadata_file)
 
-drop_cols <- c("PedBE", "Wu", "TL")
-myDNAmAge_with_metadata_without_pedbe_wu_tl <- myDNAmAge_with_metadata[ , !(names(myDNAmAge_with_metadata) %in% drop_cols)]
-write.csv(myDNAmAge_with_metadata_without_pedbe_wu_tl, "myDNAmAge_with_metadata_without_pedbe_wu_tl.csv")
+drop_cols <- c("PedBE", "Wu", "TL", "BNN")
+myDNAmAge_with_metadata_without_pedbe_wu_tl_bnn <- myDNAmAge_with_metadata[ , !(names(myDNAmAge_with_metadata) %in% drop_cols)]
+write.csv(myDNAmAge_with_metadata_without_pedbe_wu_tl_bnn, "myDNAmAge_with_metadata_without_pedbe_wu_tl_bnn.csv")
