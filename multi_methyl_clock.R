@@ -34,9 +34,9 @@ commonClockCpgs(cpgs.missing, "Hannum" )
 commonClockCpgs(cpgs.missing.GA, "Bohlin" )
 
 # 4.1Data in Horvath’s format (e.g. csv with CpGs in rows)
-library(tidyverse)
-MethylationData <- get_MethylationDataExample()
-MethylationData
+# library(tidyverse)
+# MethylationData <- get_MethylationDataExample()
+# MethylationData
 
-age.example55 <- DNAmAge(MethylationData)
+# age.example55 <- DNAmAge(MethylationData)
 myDNAmAge <- DNAmAge(myData) # this is the actual line
