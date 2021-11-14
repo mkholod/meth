@@ -43,3 +43,8 @@ vignettes/*.pdf
 
 # Mac files
 .DS_Store
+
+# ignore RData
+.RDataTmp
+
+

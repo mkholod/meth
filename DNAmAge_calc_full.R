@@ -39,7 +39,6 @@ library(ggpmisc)
 library(GEOquery)
 
 myDNAmAge <- DNAmAge(beta)
-write.csv(myDNAmAge, "DNAmAge_full.csv")
 
 # read the metadata
 dataOnly = read.csv("../../RAW/Sample_Sheet_Full.csv", skip = 8, header = F)
@@ -48,8 +47,7 @@ colnames(dataOnly) = headers
 metadata_file <- dataOnly
 
 # bind metadata with the DNAmAge
-myDNAmAge_with_metadata <- myDNAmAge
-myDNAmAge_with_metadata <- cbind(myDNAmAge_with_metadata, metadata_file)
+myDNAmAge_with_metadata <- cbind(myDNAmAge, metadata_file)
 
 # remove unneeded columns
 drop_cols <- c("PedBE", "Wu", "TL", "BNN")
