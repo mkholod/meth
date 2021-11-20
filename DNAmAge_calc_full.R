@@ -104,6 +104,17 @@ plotDNAmAge(filter_VHL$skinHorvath, filter_VHL$Age, tit="skinHorvath (VHL)")
 filter_AnyMetYes <- subset(myData, AnyMet == "Yes")
 filter_AnyMetNo <- subset(myData, AnyMet == "No")
 
+is_filter_negative_calculated_age = TRUE
+out_file_avg = "any_met_avg_yes_no_by_clocks.csv"
+out_file_sd = "any_met_sd_yes_no_by_clocks.csv"
+
+if (is_filter_negative_calculated_age) {
+  filter_AnyMetYes <- subset(filter_AnyMetYes, Levine > 0)
+  filter_AnyMetNo <- subset(filter_AnyMetNo, Levine > 0)
+  out_file_avg = "any_met_avg_yes_no_by_clocks_without_negative_levine.csv"
+  out_file_sd = "any_met_sd_yes_no_by_clocks_without_negative_levine.csv"
+}
+
 avg_by_clock <- c()
 sd_by_clock <- c()
 for (clock_type in c("ageAcc.Horvath", "ageAcc2.Horvath", "ageAcc3.Horvath", "ageAcc.Hannum", "ageAcc2.Hannum", "ageAcc3.Hannum", "ageAcc.Levine", "ageAcc2.Levine", "ageAcc3.Levine", "ageAcc.Hovarth2", "ageAcc2.Hovarth2", "ageAcc3.Hovarth2")) {
@@ -116,10 +127,10 @@ for (clock_type in c("ageAcc.Horvath", "ageAcc2.Horvath", "ageAcc3.Horvath", "ag
     sd_by_clock <- rbind(sd_by_clock, c(clock_type, sd_yes, sd_no))
 }
 colnames(avg_by_clock) <- c("clock_type", "Yes_avg", "No_avg")
-write.csv(avg_by_clock, "any_met_avg_yes_no_by_clocks.csv")
+write.csv(avg_by_clock, out_file_avg)
 
 colnames(sd_by_clock) <- c("clock_type", "Yes_sd", "No_sd")
-write.csv(sd_by_clock, "any_met_sd_yes_no_by_clocks.csv")
+write.csv(sd_by_clock, out_file_sd)
 
 
 # TODO metastasis predicition accel vs features
