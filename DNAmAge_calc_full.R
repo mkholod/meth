@@ -105,13 +105,21 @@ filter_AnyMetYes <- subset(myData, AnyMet == "Yes")
 filter_AnyMetNo <- subset(myData, AnyMet == "No")
 
 avg_by_clock <- c()
-for (clock_type in c("Horvath", "Hannum", "Levine", "skinHorvath")) {
+sd_by_clock <- c()
+for (clock_type in c("ageAcc.Horvath", "ageAcc2.Horvath", "ageAcc3.Horvath", "ageAcc.Hannum", "ageAcc2.Hannum", "ageAcc3.Hannum", "ageAcc.Levine", "ageAcc2.Levine", "ageAcc3.Levine", "ageAcc.Hovarth2", "ageAcc2.Hovarth2", "ageAcc3.Hovarth2")) {
     avg_yes <- mean(filter_AnyMetYes[[clock_type]], na.rm=TRUE)
     avg_no <- mean(filter_AnyMetNo[[clock_type]], na.rm=TRUE)
     avg_by_clock <- rbind(avg_by_clock, c(clock_type, avg_yes, avg_no))
+    
+    sd_yes <- sd(filter_AnyMetYes[[clock_type]], na.rm=TRUE)
+    sd_no <- sd(filter_AnyMetNo[[clock_type]], na.rm=TRUE)
+    sd_by_clock <- rbind(sd_by_clock, c(clock_type, sd_yes, sd_no))
 }
 colnames(avg_by_clock) <- c("clock_type", "Yes_avg", "No_avg")
 write.csv(avg_by_clock, "any_met_avg_yes_no_by_clocks.csv")
+
+colnames(sd_by_clock) <- c("clock_type", "Yes_sd", "No_sd")
+write.csv(sd_by_clock, "any_met_sd_yes_no_by_clocks.csv")
 
 
 # TODO metastasis predicition accel vs features
