@@ -99,5 +99,22 @@ plotDNAmAge(filter_sporadic$skinHorvath, filter_sporadic$Age, tit="skinHorvath (
 plotDNAmAge(filter_MEN1$skinHorvath, filter_MEN1$Age, tit="skinHorvath (MEN1)")
 plotDNAmAge(filter_VHL$skinHorvath, filter_VHL$Age, tit="skinHorvath (VHL)")
 
+# for each clock calculate
+# 1. mean deviation 2. average and present the value for AnyMet (yes/no)
+filter_AnyMetYes <- subset(myData, AnyMet == "Yes")
+filter_AnyMetNo <- subset(myData, AnyMet == "No")
+
+my_arr <- c()
+for (clock_type in c("Horvath", "Hannum", "Levine", "skinHorvath")) {
+    avg_yes <- mean(filter_AnyMetYes[[clock_type]], na.rm=TRUE)
+    avg_no <- mean(filter_AnyMetNo[[clock_type]], na.rm=TRUE)
+    my_arr <- rbind(my_arr, c(clock_type, avg_yes, avg_no))
+}
+colnames(my_arr) <- c("clock_type", "Yes", "No")
+write.csv(my_arr, "any_met_avg_yes_no_by_clocks.csv")
+
+
 # TODO metastasis predicition accel vs features
 # TODO does it divide to sample groups unsupervised
+# TODO VHL+MEN1 vs Sporadic
+# TODO in MEN1 check for only under the age of 50
