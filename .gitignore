@@ -47,4 +47,14 @@ vignettes/*.pdf
 # ignore RData
 .RDataTmp
 
+DOWNLOADS/*
+MISHA/*
+NET samples tracking sheet.xlsx
+OTHER/*
+RAW/*
+RAW_SAMPLE.zip
+RAW_SAMPLE/*
+TIROSH_SAMPLE/*
+TUTORIAL.zip
+TUTORIAL/*
 

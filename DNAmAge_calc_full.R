@@ -69,6 +69,35 @@ drop_cols <- c("PedBE", "Wu", "TL", "BNN")
 myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn <- myDNAmAge_with_acceleration_age_with_metadata[ , !(names(myDNAmAge_with_acceleration_age_with_metadata) %in% drop_cols)]
 write.csv(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn, "myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn.csv")
 
+#plot 
+plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Horvath, metadata_file$Age)
+plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Hannum, metadata_file$Age, tit="Hannum")
+plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Levine, metadata_file$Age, tit="Levine")
+plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$skinHorvath, metadata_file$Age, tit="skinHorvath")
 
 
+# make for each clock by sample group
+myData <- myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn
+filter_sporadic <- subset(myData, Sample_Group == "Sporadic")
+filter_MEN1 <- subset(myData, Sample_Group == "MEN1")
+filter_VHL <- subset(myData, Sample_Group == "VHL")
+rownames(filter_sporadic) <- NULL
 
+plotDNAmAge(filter_sporadic$Horvath, filter_sporadic$Age, tit="Hovarth (sporadic)")
+plotDNAmAge(filter_MEN1$Horvath, filter_MEN1$Age, tit="Hovarth (MEN1)")
+plotDNAmAge(filter_VHL$Horvath, filter_VHL$Age, tit="Hovarth (VHL)")
+
+plotDNAmAge(filter_sporadic$Hannum, filter_sporadic$Age, tit="Hannum (sporadic)")
+plotDNAmAge(filter_MEN1$Hannum, filter_MEN1$Age, tit="Hannum (MEN1)")
+plotDNAmAge(filter_VHL$Hannum, filter_VHL$Age, tit="Hannum (VHL)")
+
+plotDNAmAge(filter_sporadic$Levine, filter_sporadic$Age, tit="Levine (sporadic)")
+plotDNAmAge(filter_MEN1$Levine, filter_MEN1$Age, tit="Levine (MEN1)")
+plotDNAmAge(filter_VHL$Levine, filter_VHL$Age, tit="Levine (VHL)")
+
+plotDNAmAge(filter_sporadic$skinHorvath, filter_sporadic$Age, tit="skinHorvath (sporadic)")
+plotDNAmAge(filter_MEN1$skinHorvath, filter_MEN1$Age, tit="skinHorvath (MEN1)")
+plotDNAmAge(filter_VHL$skinHorvath, filter_VHL$Age, tit="skinHorvath (VHL)")
+
+# TODO metastasis predicition accel vs features
+# TODO does it divide to sample groups unsupervised
