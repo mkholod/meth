@@ -104,14 +104,14 @@ plotDNAmAge(filter_VHL$skinHorvath, filter_VHL$Age, tit="skinHorvath (VHL)")
 filter_AnyMetYes <- subset(myData, AnyMet == "Yes")
 filter_AnyMetNo <- subset(myData, AnyMet == "No")
 
-my_arr <- c()
+avg_by_clock <- c()
 for (clock_type in c("Horvath", "Hannum", "Levine", "skinHorvath")) {
     avg_yes <- mean(filter_AnyMetYes[[clock_type]], na.rm=TRUE)
     avg_no <- mean(filter_AnyMetNo[[clock_type]], na.rm=TRUE)
-    my_arr <- rbind(my_arr, c(clock_type, avg_yes, avg_no))
+    avg_by_clock <- rbind(avg_by_clock, c(clock_type, avg_yes, avg_no))
 }
-colnames(my_arr) <- c("clock_type", "Yes", "No")
-write.csv(my_arr, "any_met_avg_yes_no_by_clocks.csv")
+colnames(avg_by_clock) <- c("clock_type", "Yes_avg", "No_avg")
+write.csv(avg_by_clock, "any_met_avg_yes_no_by_clocks.csv")
 
 
 # TODO metastasis predicition accel vs features
