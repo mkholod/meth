@@ -16,7 +16,7 @@ library(minfi)
 library(minfiData)
 library(sva)
 
-is_full_data <- FALSE # full 96 samples if TRUE, 16 samples for speed if FALSE
+is_full_data <- TRUE # full 96 samples if TRUE, 16 samples for speed if FALSE
 if (is_full_data) {
   baseDir <- "RAW"
 } else {
@@ -44,10 +44,7 @@ library(ggplot2)
 library(ggpmisc)
 library(GEOquery)
 
-myDNAmAge <- DNAmAge(beta)
-
 # read the metadata
-
 if (is_full_data) {
   sample_sheet_filename = "/Sample_Sheet_Full.csv"
 } else {
