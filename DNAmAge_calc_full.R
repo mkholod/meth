@@ -212,6 +212,16 @@ t.test(all_data$ageAcc.Horvath[all_data$Sample_Group != "VHL"], all_data$ageAcc.
 
 t.test(all_data$ageAcc.Levine[all_data$Sample_Group != "VHL"], all_data$ageAcc.Levine[all_data$Sample_Group == "VHL"])
 
+# Welch Two Sample t-test
+
+# data:  all_data$ageAcc.Levine[all_data$Sample_Group != "VHL"] and all_data$ageAcc.Levine[all_data$Sample_Group == "VHL"]
+# t = -2.3245, df = 22.878, p-value = 0.02933
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -14.7099016  -0.8546052
+# sample estimates:
+#  mean of x mean of y 
+# -19.56973 -11.78748 
 
 
 # TODO metastasis predicition accel vs features
