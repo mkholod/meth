@@ -277,6 +277,31 @@ t.test(no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group != "VHL
 #   mean of x mean of y 
 # 2.002757  3.630168 
 
+#ANOVA calculation based on https://www.youtube.com/watch?v=fT2No3Io72g&ab_channel=statisticsfun
+
+
+Anova_Results <- aov(all_data$ageAcc.Horvath ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2    180    90.1   0.246  0.783
+# Residuals             93  34135   367.0    
+
+Anova_Results <- aov(all_data$ageAcc.Levine ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# all_data$Sample_Group  2   1844   921.8   2.774 0.0676 .
+# Residuals             93  30901   332.3                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(no_negative_levine$ageAcc.Levine ~ no_negative_levine$Sample_Group, data=no_negative_levine)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# no_negative_levine$Sample_Group  2   1120   559.8   1.928  0.152
+# Residuals                       88  25547   290.3   
 
 # TODO metastasis predicition accel vs features
 # TODO does it divide to sample groups unsupervised
