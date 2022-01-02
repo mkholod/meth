@@ -220,8 +220,62 @@ t.test(all_data$ageAcc.Levine[all_data$Sample_Group != "VHL"], all_data$ageAcc.L
 # 95 percent confidence interval:
 #   -14.7099016  -0.8546052
 # sample estimates:
-#  mean of x mean of y 
-# -19.56973 -11.78748 
+#  mean of x mean of y
+# -19.56973 -11.78748
+
+
+no_negative_levine <- read.csv("csv/myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn_no_negative_levine.csv")
+t.test(no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "Sporadic"], no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+
+# data:  no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "Sporadic"] and no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = -0.66194, df = 38.345, p-value = 0.512
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -11.260729   5.709995
+# sample estimates:
+#   mean of x mean of y 
+# -14.56285 -11.78748 
+
+t.test(no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "Sporadic"], no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "Sporadic"] and no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = 0.49885, df = 26.175, p-value = 0.6221
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -6.318595 10.370033
+# sample estimates:
+#   mean of x mean of y 
+# 5.655887  3.630168 
+
+t.test(no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group != "VHL"], no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group != "VHL"] and no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = -1.7705, df = 21.569, p-value = 0.09078
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -12.67726   1.00773
+# sample estimates:
+#   mean of x mean of y 
+# -17.62224 -11.78748 
+
+t.test(no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group != "VHL"], no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group != "VHL"] and no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = -0.47095, df = 15.616, p-value = 0.6442
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -8.967697  5.712874
+# sample estimates:
+#   mean of x mean of y 
+# 2.002757  3.630168 
 
 
 # TODO metastasis predicition accel vs features
