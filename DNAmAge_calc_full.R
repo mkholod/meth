@@ -303,6 +303,201 @@ summary(Anova_Results)
 # no_negative_levine$Sample_Group  2   1120   559.8   1.928  0.152
 # Residuals                       88  25547   290.3   
 
+# =============
+# To perform a TTEST for acceleration1 for Hovarth and Levine
+# And check if there is a difference between Sporadic and Vhl
+# using https://www.youtube.com/watch?v=RlhnNbPZC0A&ab_channel=MarinStatsLectures-RProgramming%26Statistics
+all_data = myDNAmAge_with_acceleration_age_with_metadata
+boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc2.Levine ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
+boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc2.Horvath ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
+
+t.test(all_data$ageAcc2.Horvath[all_data$Sample_Group == "Sporadic"], all_data$ageAcc2.Horvath[all_data$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc2.Horvath[all_data$Sample_Group == "Sporadic"] and all_data$ageAcc2.Horvath[all_data$Sample_Group == "VHL"]
+# t = 0.24433, df = 19.742, p-value = 0.8095
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -9.04976 11.44871
+# sample estimates:
+#   mean of x  mean of y 
+# 0.9136663 -0.2858094 
+
+t.test(all_data$ageAcc3.Horvath[all_data$Sample_Group == "Sporadic"], all_data$ageAcc3.Horvath[all_data$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc3.Horvath[all_data$Sample_Group == "Sporadic"] and all_data$ageAcc3.Horvath[all_data$Sample_Group == "VHL"]
+# t = 0.56727, df = 23.033, p-value = 0.576
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -6.857029 12.039125
+# sample estimates:
+#   mean of x mean of y 
+# 0.575257 -2.015791 
+
+t.test(all_data$ageAcc2.Levine[all_data$Sample_Group == "Sporadic"], all_data$ageAcc2.Levine[all_data$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc2.Levine[all_data$Sample_Group == "Sporadic"] and all_data$ageAcc2.Levine[all_data$Sample_Group == "VHL"]
+# t = 0.064188, df = 28.41, p-value = 0.9493
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -8.272391  8.807964
+# sample estimates:
+#   mean of x mean of y 
+# 3.897955  3.630168 
+
+t.test(all_data$ageAcc3.Levine[all_data$Sample_Group == "Sporadic"], all_data$ageAcc3.Levine[all_data$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc3.Levine[all_data$Sample_Group == "Sporadic"] and all_data$ageAcc3.Levine[all_data$Sample_Group == "VHL"]
+# t = 2.352, df = 32.698, p-value = 0.02485
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   1.143115 15.833131
+# sample estimates:
+#   mean of x mean of y 
+# 5.073437 -3.414686 
+
+t.test(all_data$ageAcc2.Horvath[all_data$Sample_Group != "VHL"], all_data$ageAcc2.Horvath[all_data$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc2.Horvath[all_data$Sample_Group != "VHL"] and all_data$ageAcc2.Horvath[all_data$Sample_Group == "VHL"]
+# t = 0.072491, df = 13.41, p-value = 0.9433
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -9.159548  9.797634
+# sample estimates:
+#   mean of x   mean of y 
+# 0.03323365 -0.28580935 
+
+t.test(all_data$ageAcc3.Horvath[all_data$Sample_Group != "VHL"], all_data$ageAcc3.Horvath[all_data$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc3.Horvath[all_data$Sample_Group != "VHL"] and all_data$ageAcc3.Horvath[all_data$Sample_Group == "VHL"]
+# t = 0.56312, df = 14.652, p-value = 0.5819
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -6.28454 10.78491
+# sample estimates:
+#   mean of x  mean of y 
+# 0.2343943 -2.0157909 
+
+t.test(all_data$ageAcc2.Levine[all_data$Sample_Group != "VHL"], all_data$ageAcc2.Levine[all_data$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc2.Levine[all_data$Sample_Group != "VHL"] and all_data$ageAcc2.Levine[all_data$Sample_Group == "VHL"]
+# t = -1.1339, df = 17.747, p-value = 0.2719
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -11.568005   3.463443
+# sample estimates:
+#   mean of x  mean of y 
+# -0.4221126  3.6301685 
+
+t.test(all_data$ageAcc3.Levine[all_data$Sample_Group != "VHL"], all_data$ageAcc3.Levine[all_data$Sample_Group == "VHL"])
+# 
+# Welch Two Sample t-test
+# 
+# data:  all_data$ageAcc3.Levine[all_data$Sample_Group != "VHL"] and all_data$ageAcc3.Levine[all_data$Sample_Group == "VHL"]
+# t = 1.2527, df = 20.53, p-value = 0.2244
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -2.524872 10.148358
+# sample estimates:
+#   mean of x  mean of y 
+# 0.3970565 -3.4146862 
+
+
+
+
+no_negative_levine <- read.csv("csv/myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn_no_negative_levine.csv")
+t.test(no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group == "Sporadic"], no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group == "Sporadic"] and no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = 2.7853, df = 31.115, p-value = 0.009023
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   2.648601 17.126450
+# sample estimates:
+#   mean of x mean of y 
+# 6.472839 -3.414686 
+
+t.test(no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group != "VHL"], no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group != "VHL"] and no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = 2.0178, df = 18.029, p-value = 0.05874
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.2434761 12.1039435
+# sample estimates:
+#   mean of x mean of y 
+# 2.515547 -3.414686 
+
+#ANOVA calculation based on https://www.youtube.com/watch?v=fT2No3Io72g&ab_channel=statisticsfun
+
+
+Anova_Results <- aov(all_data$ageAcc2.Horvath ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2     71   35.38   0.121  0.886
+# Residuals             93  27256  293.08  
+
+Anova_Results <- aov(all_data$ageAcc3.Horvath ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2     56   27.91   0.097  0.908
+# Residuals             93  26732  287.45  
+
+Anova_Results <- aov(all_data$ageAcc2.Levine ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# all_data$Sample_Group  2   1829   914.3   3.196 0.0455 *
+#   Residuals             93  26608   286.1                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(all_data$ageAcc3.Levine ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# all_data$Sample_Group  2   2100  1050.2   4.419 0.0147 *
+#   Residuals             93  22100   237.6                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(no_negative_levine$ageAcc2.Levine ~ no_negative_levine$Sample_Group, data=no_negative_levine)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# no_negative_levine$Sample_Group  2   1188   593.9   2.805 0.0659 .
+# Residuals                       88  18628   211.7                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(no_negative_levine$ageAcc3.Levine ~ no_negative_levine$Sample_Group, data=no_negative_levine)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# no_negative_levine$Sample_Group  2   1679   839.5   4.615 0.0124 *
+#   Residuals                       88  16008   181.9                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 # TODO metastasis predicition accel vs features
 # TODO does it divide to sample groups unsupervised
 # TODO VHL+MEN1 vs Sporadic
