@@ -445,6 +445,58 @@ t.test(no_negative_levine$ageAcc3.Levine[no_negative_levine$Sample_Group != "VHL
 #   mean of x mean of y 
 # 2.515547 -3.414686 
 
+t.test(no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "Sporadic"], no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "Sporadic"] and no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = -0.66194, df = 38.345, p-value = 0.512
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -11.260729   5.709995
+# sample estimates:
+#   mean of x mean of y 
+# -14.56285 -11.78748 
+
+t.test(no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group != "VHL"], no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group != "VHL"] and no_negative_levine$ageAcc.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = -1.7705, df = 21.569, p-value = 0.09078
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -12.67726   1.00773
+# sample estimates:
+#   mean of x mean of y 
+# -17.62224 -11.78748 
+
+t.test(no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "Sporadic"], no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "Sporadic"] and no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = 0.49885, df = 26.175, p-value = 0.6221
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -6.318595 10.370033
+# sample estimates:
+#   mean of x mean of y 
+# 5.655887  3.630168 
+
+t.test(no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group != "VHL"], no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"])
+
+# Welch Two Sample t-test
+# 
+# data:  no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group != "VHL"] and no_negative_levine$ageAcc2.Levine[no_negative_levine$Sample_Group == "VHL"]
+# t = -0.47095, df = 15.616, p-value = 0.6442
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -8.967697  5.712874
+# sample estimates:
+#   mean of x mean of y 
+# 2.002757  3.630168 
+
 #ANOVA calculation based on https://www.youtube.com/watch?v=fT2No3Io72g&ab_channel=statisticsfun
 
 
