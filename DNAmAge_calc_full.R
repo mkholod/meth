@@ -30,6 +30,7 @@ manifest <- getManifest(RGSet)
 MSet <- preprocessRaw(RGSet) 
 RSet <- ratioConvert(MSet, what = "both", keepCN = TRUE)
 beta <- getBeta(RSet)
+write.csv(beta, "./beta.csv")
 
 # from 
 # https://www.bioconductor.org/packages/devel/bioc/vignettes/methylclock/inst/doc/methylclock.html
@@ -62,6 +63,47 @@ metadata_file <- dataOnly
 myDNAmAge_with_acceleration_age <- DNAmAge(beta, age=metadata_file$Age, cell.count=TRUE)
 cpgs.missing <- checkClocks(myDNAmAge_with_acceleration_age)
 cpgs.missing.GA <- checkClocksGA(myDNAmAge_with_acceleration_age)
+
+###
+load_DNAm_Clocks_data()
+horvath_cgs <- coefHorvath[-1,1]
+levine_cgs <- coefLevine[-1,1]
+row_names_beta <- row.names(beta)
+
+library(stringr)
+row_names_beta_sorted <- str_sort(row_names_beta)
+
+horvath_cgs_sorted <- str_sort(horvath_cgs)
+missing <- horvath_cgs_sorted %in% row_names_beta_sorted
+missing_horvath_cgs <- horvath_cgs_sorted[!missing]
+# > missing_horvath_cgs
+# [1] "cg02654291" "cg02972551" "cg04431054" "cg05590257" "cg06117855" "cg09785172" "cg09869858" "cg13682722" "cg14329157"
+# [10] "cg16494477" "cg17408647" "cg19046959" "cg19167673" "cg19273182" "cg19569684" "cg19945840" "cg24471894" "cg27016307"
+# [19] "cg27319898"
+
+horvath_beta_row_names <- row_names_beta_sorted %in% horvath_cgs_sorted
+horvath_beta <- beta[row_names_beta_sorted %in% horvath_cgs_sorted,]
+write.csv(horvath_beta, "horvath_beta.csv")
+
+levine_cgs_sorted <- str_sort(levine_cgs)
+missing_places_levine <- levine_cgs_sorted %in% row_names_beta_sorted
+missing_levine_cgs <- levine_cgs_sorted[!missing_places_levine]
+
+levine_beta_row_names <- row_names_beta_sorted %in% levine_cgs_sorted
+levine_beta <- beta[row_names_beta_sorted %in% levine_cgs_sorted,]
+write.csv(levine_beta, "levine_beta.csv")
+# cpg.names <- getInputCpgNames(myDNAmAge_with_acceleration_age)
+# if (!all(c("coefHorvath", "coefHannum", "coefLevine", "coefSkin", 
+#            "coefPedBE", "coefWu", "coefTL") %in% ls(.GlobalEnv))) {
+#   load_DNAm_Clocks_data()
+# }
+# checkHorvath <- coefHorvath$CpGmarker[-1][!coefHorvath$CpGmarker[-1] %in% cpg.names]
+# checkHannum <- coefHannum$CpGmarker[!coefHannum$CpGmarker %in% 
+#                                       cpg.names]
+# checkLevine <- coefLevine$CpGmarker[-1][!coefLevine$CpGmarker[-1] %in% 
+#                                           cpg.names]
+# checkHorvath <- coefHorvath$CpGmarker[-1][!coefHorvath$CpGmarker[-1] %in% cpg.names]
+###
 
 # bind metadata with the DNAmAge
 myDNAmAge_with_acceleration_age_with_metadata <- cbind(myDNAmAge_with_acceleration_age, metadata_file)
