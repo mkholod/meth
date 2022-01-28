@@ -514,3 +514,144 @@ shapiro.test(curr_data$ageAcc3.Levine[curr_data$Sample_Group==men1])
 
 length(curr_data$Horvath[curr_data$Sample_Group==men1])
 
+########## ANOVA ##########
+
+#ANOVA calculation based on https://www.youtube.com/watch?v=fT2No3Io72g&ab_channel=statisticsfun
+
+all_data <- curr_data
+Anova_Results <- aov(all_data$ageAcc.Horvath ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2    180    90.1   0.246  0.783
+# Residuals             93  34135   367.0    
+
+Anova_Results <- aov(log(abs(all_data$ageAcc.Horvath)) ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2   1.97  0.9873   0.738  0.481
+# Residuals             93 124.44  1.3381 
+
+Anova_Results <- aov(all_data$ageAcc.Levine ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# all_data$Sample_Group  2   1844   921.8   2.774 0.0676 .
+# Residuals             93  30901   332.3                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(log(all_data$ageAcc.Levine) ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2  9.445   4.722   2.327  0.134
+# Residuals             14 28.409   2.029               
+# 79 observations deleted due to missingness
+
+Anova_Results <- aov(no_negative_levine$ageAcc.Levine ~ no_negative_levine$Sample_Group, data=no_negative_levine)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# no_negative_levine$Sample_Group  2   1120   559.8   1.928  0.152
+# Residuals                       88  25547   290.3  
+
+Anova_Results <- aov(log(no_negative_levine$ageAcc.Levine) ~ no_negative_levine$Sample_Group, data=no_negative_levine)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2  9.445   4.722   2.327  0.134
+# Residuals             14 28.409   2.029               
+# 79 observations deleted due to missingness
+
+
+
+Anova_Results <- aov(all_data$ageAcc2.Horvath ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2     71   35.38   0.121  0.886
+# Residuals             93  27256  293.08  
+
+Anova_Results <- aov(all_data$ageAcc3.Horvath ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)
+# all_data$Sample_Group  2     56   27.91   0.097  0.908
+# Residuals             93  26732  287.45  
+
+Anova_Results <- aov(all_data$ageAcc2.Levine ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# all_data$Sample_Group  2   1829   914.3   3.196 0.0455 *
+#   Residuals             93  26608   286.1                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(all_data$ageAcc3.Levine ~ all_data$Sample_Group, data=all_data)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# all_data$Sample_Group  2   2100  1050.2   4.419 0.0147 *
+#   Residuals             93  22100   237.6                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(no_negative_levine$ageAcc2.Levine ~ no_negative_levine$Sample_Group, data=no_negative_levine)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# no_negative_levine$Sample_Group  2   1188   593.9   2.805 0.0659 .
+# Residuals                       88  18628   211.7                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Anova_Results <- aov(no_negative_levine$ageAcc3.Levine ~ no_negative_levine$Sample_Group, data=no_negative_levine)
+summary(Anova_Results)
+
+# Df Sum Sq Mean Sq F value Pr(>F)  
+# no_negative_levine$Sample_Group  2   1679   839.5   4.615 0.0124 *
+#   Residuals                       88  16008   181.9                 
+# ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#####
+
+# from https://www.youtube.com/watch?v=PrydYzDShcY&ab_channel=stikpet
+pairwise.t.test(all_data$ageAcc2.Levine, all_data$Sample_Group, p.adj="bonferroni")
+# 
+# Pairwise comparisons using t tests with pooled SD 
+# 
+# data:  all_data$ageAcc2.Levine and all_data$Sample_Group 
+# 
+#          MEN1  Sporadic
+# Sporadic 0.052 -       
+# VHL      0.459 1.000   
+# 
+# P value adjustment method: bonferroni 
+
+
+pairwise.t.test(all_data$ageAcc3.Levine, all_data$Sample_Group, p.adj="bonferroni")
+
+# Pairwise comparisons using t tests with pooled SD 
+# 
+# data:  all_data$ageAcc3.Levine and all_data$Sample_Group 
+# 
+#            MEN1  Sporadic
+#   Sporadic 0.015 -       
+#   VHL      1.000 0.358   
+# 
+# P value adjustment method: bonferroni 
+
+pairwise.t.test(no_negative_levine$ageAcc3.Levine, no_negative_levine$Sample_Group, p.adj="bonferroni")
+
+# Pairwise comparisons using t tests with pooled SD 
+# 
+# data:  no_negative_levine$ageAcc3.Levine and no_negative_levine$Sample_Group 
+# 
+#          MEN1  Sporadic
+# Sporadic 0.022 -       
+# VHL      1.000 0.120   
+# 
+# P value adjustment method: bonferroni
