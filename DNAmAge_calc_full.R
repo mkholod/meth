@@ -379,3 +379,138 @@ t.test(all_data$ageAcc3.Wu[all_data$Sample_Group == "Sporadic"], all_data$ageAcc
 # TODO does it divide to sample groups unsupervised
 # TODO VHL+MEN1 vs Sporadic
 # TODO in MEN1 check for only under the age of 50
+
+# https://www.youtube.com/watch?v=BCJ7gLQ9MZM&ab_channel=CrackEconomicsandStatistics
+# test age for MAN1, Sporadic, VHL groups for normal distribution
+curr_data <- myDNAmAge_with_acceleration_age_with_metadata
+horvath_age_sporadic <- curr_data$Horvath[curr_data$Sample_Group=='Sporadic']
+shapiro.test(horvath_age_sporadic)
+horvath_age_vhl <- curr_data$Horvath[curr_data$Sample_Group=='VHL']
+shapiro.test(horvath_age_vhl)
+vhl <- 'VHL'
+# data:  horvath_age_vhl
+# W = 0.94214, p-value = 0.5771
+shapiro.test(curr_data$ageAcc.Horvath[curr_data$Sample_Group==vhl])
+# data:  curr_data$ageAcc.Horvath[curr_data$Sample_Group == "VHL"]
+# W = 0.87703, p-value = 0.1206
+shapiro.test(curr_data$ageAcc2.Horvath[curr_data$Sample_Group=='VHL'])
+# data:  curr_data$ageAcc2.Horvath[curr_data$Sample_Group == "VHL"]
+# W = 0.93607, p-value = 0.5101
+shapiro.test(curr_data$ageAcc3.Horvath[curr_data$Sample_Group=='VHL'])
+# data:  curr_data$ageAcc3.Horvath[curr_data$Sample_Group == "VHL"]
+# W = 0.94136, p-value = 0.5682
+shapiro.test(curr_data$Levine[curr_data$Sample_Group=='VHL'])
+# data:  curr_data$Levine[curr_data$Sample_Group == "VHL"]
+# W = 0.94839, p-value = 0.6495
+shapiro.test(curr_data$ageAcc.Levine[curr_data$Sample_Group=='VHL'])
+# data:  curr_data$ageAcc.Levine[curr_data$Sample_Group == "VHL"]
+# W = 0.90279, p-value = 0.235
+shapiro.test(curr_data$ageAcc2.Levine[curr_data$Sample_Group=='VHL'])
+# data:  curr_data$ageAcc2.Levine[curr_data$Sample_Group == "VHL"]
+# W = 0.95345, p-value = 0.7094
+shapiro.test(curr_data$ageAcc3.Levine[curr_data$Sample_Group=='VHL'])
+# data:  curr_data$ageAcc3.Levine[curr_data$Sample_Group == "VHL"]
+# W = 0.85219, p-value = 0.06168
+
+sporadic <- 'Sporadic'
+shapiro.test(curr_data$Horvath[curr_data$Sample_Group==sporadic])
+shapiro.test(curr_data$ageAcc.Horvath[curr_data$Sample_Group==sporadic])
+shapiro.test(curr_data$ageAcc2.Horvath[curr_data$Sample_Group==sporadic])
+shapiro.test(curr_data$ageAcc3.Horvath[curr_data$Sample_Group==sporadic])
+shapiro.test(curr_data$Levine[curr_data$Sample_Group==sporadic])
+shapiro.test(curr_data$ageAcc.Levine[curr_data$Sample_Group==sporadic])
+shapiro.test(curr_data$ageAcc2.Levine[curr_data$Sample_Group==sporadic])
+shapiro.test(curr_data$ageAcc3.Levine[curr_data$Sample_Group==sporadic])
+
+# > shapiro.test(curr_data$Horvath[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality test
+# data:  curr_data$Horvath[curr_data$Sample_Group == sporadic]
+# W = 0.95538, p-value = 0.08736
+# 
+# > shapiro.test(curr_data$ageAcc.Horvath[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc.Horvath[curr_data$Sample_Group == sporadic]
+# W = 0.97847, p-value = 0.5736
+# 
+# > shapiro.test(curr_data$ageAcc2.Horvath[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc2.Horvath[curr_data$Sample_Group == sporadic]
+# W = 0.96049, p-value = 0.1357
+# 
+# > shapiro.test(curr_data$ageAcc3.Horvath[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality tes
+# data:  curr_data$ageAcc3.Horvath[curr_data$Sample_Group == sporadic]
+# W = 0.95599, p-value = 0.09213
+# 
+# > shapiro.test(curr_data$Levine[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality test
+# data:  curr_data$Levine[curr_data$Sample_Group == sporadic]
+# W = 0.9706, p-value = 0.3177
+# 
+# > shapiro.test(curr_data$ageAcc.Levine[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc.Levine[curr_data$Sample_Group == sporadic]
+# W = 0.94559, p-value = 0.03781
+# 
+# > shapiro.test(curr_data$ageAcc2.Levine[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc2.Levine[curr_data$Sample_Group == sporadic]
+# W = 0.96554, p-value = 0.2089
+# 
+# > shapiro.test(curr_data$ageAcc3.Levine[curr_data$Sample_Group==sporadic])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc3.Levine[curr_data$Sample_Group == sporadic]
+# W = 0.98108, p-value = 0.677
+
+men1 <- 'MEN1'
+shapiro.test(curr_data$Horvath[curr_data$Sample_Group==men1])
+shapiro.test(curr_data$ageAcc.Horvath[curr_data$Sample_Group==men1])
+shapiro.test(curr_data$ageAcc2.Horvath[curr_data$Sample_Group==men1])
+shapiro.test(curr_data$ageAcc3.Horvath[curr_data$Sample_Group==men1])
+shapiro.test(curr_data$Levine[curr_data$Sample_Group==men1])
+shapiro.test(curr_data$ageAcc.Levine[curr_data$Sample_Group==men1])
+shapiro.test(curr_data$ageAcc2.Levine[curr_data$Sample_Group==men1])
+shapiro.test(curr_data$ageAcc3.Levine[curr_data$Sample_Group==men1])
+
+# > shapiro.test(curr_data$Horvath[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality test
+# data:  curr_data$Horvath[curr_data$Sample_Group == men1]
+# W = 0.91676, p-value = 0.004756
+# 
+# > shapiro.test(curr_data$ageAcc.Horvath[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc.Horvath[curr_data$Sample_Group == men1]
+# W = 0.94279, p-value = 0.03581
+# 
+# > shapiro.test(curr_data$ageAcc2.Horvath[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc2.Horvath[curr_data$Sample_Group == men1]
+# W = 0.89891, p-value = 0.001336
+# 
+# > shapiro.test(curr_data$ageAcc3.Horvath[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality tes
+# data:  curr_data$ageAcc3.Horvath[curr_data$Sample_Group == men1]
+# W = 0.88053, p-value = 0.0003955
+# 
+# > shapiro.test(curr_data$Levine[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality tes
+# data:  curr_data$Levine[curr_data$Sample_Group == men1]
+# W = 0.93218, p-value = 0.01535
+# 
+# > shapiro.test(curr_data$ageAcc.Levine[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc.Levine[curr_data$Sample_Group == men1]
+# W = 0.9552, p-value = 0.09931
+# 
+# > shapiro.test(curr_data$ageAcc2.Levine[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc2.Levine[curr_data$Sample_Group == men1]
+# W = 0.92167, p-value = 0.006854
+# 
+# > shapiro.test(curr_data$ageAcc3.Levine[curr_data$Sample_Group==men1])
+# Shapiro-Wilk normality test
+# data:  curr_data$ageAcc3.Levine[curr_data$Sample_Group == men1]
+# W = 0.93548, p-value = 0.01992
+
+length(curr_data$Horvath[curr_data$Sample_Group==men1])
+
