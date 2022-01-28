@@ -758,3 +758,98 @@ shapiro.test(data_with_epi_toc$irS2[data_with_epi_toc$Sample_Group==vhl])
 # W = 0.89799, p-value = 0.2082
 
 
+###########
+# https://www.youtube.com/watch?v=OL8qaVS4Xwg&ab_channel=stikpet
+
+install.packages("car")
+library(car)
+
+leveneTest(all_data$ageAcc2.Levine, all_data$Sample_Group, center=mean)
+# Levene's Test for Homogeneity of Variance (center = mean)
+#       Df F value  Pr(>F)  
+# group  2  3.8104 0.02567 *
+#       93                  
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+leveneTest(all_data$ageAcc3.Levine, all_data$Sample_Group, center=mean)
+
+# Levene's Test for Homogeneity of Variance (center = mean)
+#       Df F value  Pr(>F)  
+# group  2  3.4427 0.03611 *
+#       93                  
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# Warning message:
+# In leveneTest.default(all_data$ageAcc3.Levine, all_data$Sample_Group,  :
+#   all_data$Sample_Group coerced to factor.
+
+leveneTest(all_data$ageAcc2.Levine, all_data$Sample_Group)
+# Levene's Test for Homogeneity of Variance (center = median)
+#       Df F value  Pr(>F)  
+# group  2  2.9602 0.05671 .
+#       93                  
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# Warning message:
+# In leveneTest.default(all_data$ageAcc2.Levine, all_data$Sample_Group) :
+#   all_data$Sample_Group coerced to factor.
+  
+leveneTest(all_data$ageAcc3.Levine, all_data$Sample_Group)
+
+# Levene's Test for Homogeneity of Variance (center = median)
+#       Df F value  Pr(>F)  
+# group  2  3.2372 0.04374 *
+#       93                  
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# Warning message:
+# In leveneTest.default(all_data$ageAcc3.Levine, all_data$Sample_Group) :
+#   all_data$Sample_Group coerced to factor.
+
+############ Welch’s ANOVA ############### https://www.statology.org/welchs-anova-in-r/
+
+bartlett.test(all_data$ageAcc2.Levine ~ all_data$Sample_Group, data = all_data)
+
+# Bartlett test of homogeneity of variances
+# 
+# data:  all_data$ageAcc2.Levine by all_data$Sample_Group
+# Bartlett's K-squared = 6.1529, df = 2, p-value = 0.04612
+
+bartlett.test(all_data$ageAcc3.Levine ~ all_data$Sample_Group, data = all_data)
+
+# Bartlett test of homogeneity of variances
+# 
+# data:  all_data$ageAcc3.Levine by all_data$Sample_Group
+# Bartlett's K-squared = 7.4526, df = 2, p-value = 0.02408
+
+bartlett.test(no_negative_levine$ageAcc3.Levine ~ no_negative_levine$Sample_Group, data = no_negative_levine)
+
+# Bartlett test of homogeneity of variances
+# 
+# data:  no_negative_levine$ageAcc3.Levine by no_negative_levine$Sample_Group
+# Bartlett's K-squared = 11.844, df = 2, p-value = 0.002679
+
+oneway.test(all_data$ageAcc2.Levine ~ all_data$Sample_Group, data = all_data, var.equal = FALSE)
+
+# One-way analysis of means (not assuming equal variances)
+# 
+# data:  all_data$ageAcc2.Levine and all_data$Sample_Group
+# F = 3.6896, num df = 2.000, denom df = 34.229, p-value = 0.0354
+
+oneway.test(all_data$ageAcc3.Levine ~ all_data$Sample_Group, data = all_data, var.equal = FALSE)
+
+# One-way analysis of means (not assuming equal variances)
+# 
+# data:  all_data$ageAcc3.Levine and all_data$Sample_Group
+# F = 4.2504, num df = 2.000, denom df = 37.009, p-value = 0.02179
+
+oneway.test(no_negative_levine$ageAcc3.Levine ~ no_negative_levine$Sample_Group, data = no_negative_levine, var.equal = FALSE)
+
+# One-way analysis of means (not assuming equal variances)
+# 
+# data:  no_negative_levine$ageAcc3.Levine and no_negative_levine$Sample_Group
+# F = 4.5749, num df = 2.000, denom df = 31.867, p-value = 0.01792
+
+
+
