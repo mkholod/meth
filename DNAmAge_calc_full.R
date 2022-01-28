@@ -851,5 +851,115 @@ oneway.test(no_negative_levine$ageAcc3.Levine ~ no_negative_levine$Sample_Group,
 # data:  no_negative_levine$ageAcc3.Levine and no_negative_levine$Sample_Group
 # F = 4.5749, num df = 2.000, denom df = 31.867, p-value = 0.01792
 
+####################### R - Kruskall-Wallis test https://www.youtube.com/watch?v=Y1qeAFAV5yQ&ab_channel=RStatisticsandResearch
+
+bartlett.test(data_with_epi_toc$tnsc ~ all_data$Sample_Group, data = data_with_epi_toc)
+bartlett.test(data_with_epi_toc$tnsc2 ~ all_data$Sample_Group, data = data_with_epi_toc)
+bartlett.test(data_with_epi_toc$irS ~ all_data$Sample_Group, data = data_with_epi_toc)
+bartlett.test(data_with_epi_toc$irS2 ~ all_data$Sample_Group, data = data_with_epi_toc)
+bartlett.test(data_with_epi_toc$pcgtAge ~ all_data$Sample_Group, data = data_with_epi_toc)
+bartlett.test(data_with_epi_toc$hypoSC ~ all_data$Sample_Group, data = data_with_epi_toc) # only this one is p-value = 0.06763 so only this one is valid
+
+# > bartlett.test(data_with_epi_toc$tnsc ~ all_data$Sample_Group, data = data_with_epi_toc)
+# data:  data_with_epi_toc$tnsc by all_data$Sample_Group
+# Bartlett's K-squared = 6.7104, df = 2, p-value = 0.0349
+# 
+# > bartlett.test(data_with_epi_toc$tnsc2 ~ all_data$Sample_Group, data = data_with_epi_toc)
+# data:  data_with_epi_toc$tnsc2 by all_data$Sample_Group
+# Bartlett's K-squared = 6.6627, df = 2, p-value = 0.03575
+# 
+# > bartlett.test(data_with_epi_toc$irS ~ all_data$Sample_Group, data = data_with_epi_toc)
+# data:  data_with_epi_toc$irS by all_data$Sample_Group
+# Bartlett's K-squared = 35.556, df = 2, p-value = 1.901e-08
+# 
+# > bartlett.test(data_with_epi_toc$irS2 ~ all_data$Sample_Group, data = data_with_epi_toc)
+# data:  data_with_epi_toc$irS2 by all_data$Sample_Group
+# Bartlett's K-squared = 46.422, df = 2, p-value = 8.309e-11
+# 
+# > bartlett.test(data_with_epi_toc$pcgtAge ~ all_data$Sample_Group, data = data_with_epi_toc)
+# data:  data_with_epi_toc$pcgtAge by all_data$Sample_Group
+# Bartlett's K-squared = 6.3353, df = 2, p-value = 0.0421
+# 
+# > bartlett.test(data_with_epi_toc$hypoSC ~ all_data$Sample_Group, data = data_with_epi_toc)
+# data:  data_with_epi_toc$hypoSC by all_data$Sample_Group
+# Bartlett's K-squared = 5.3873, df = 2, p-value = 0.06763
+
+kruskal.test(data_with_epi_toc$tnsc ~ all_data$Sample_Group, data = data_with_epi_toc)
+kruskal.test(data_with_epi_toc$tnsc2 ~ all_data$Sample_Group, data = data_with_epi_toc)
+kruskal.test(data_with_epi_toc$irS ~ all_data$Sample_Group, data = data_with_epi_toc)
+kruskal.test(data_with_epi_toc$irS2 ~ all_data$Sample_Group, data = data_with_epi_toc)
+kruskal.test(data_with_epi_toc$pcgtAge ~ all_data$Sample_Group, data = data_with_epi_toc)
+kruskal.test(data_with_epi_toc$hypoSC ~ all_data$Sample_Group, data = data_with_epi_toc)
+
+# > kruskal.test(data_with_epi_toc$tnsc ~ all_data$Sample_Group, data = data_with_epi_toc)
+# 
+# Kruskal-Wallis rank sum test
+# 
+# data:  data_with_epi_toc$tnsc by all_data$Sample_Group
+# Kruskal-Wallis chi-squared = 18.762, df = 2, p-value = 8.431e-05
+# 
+# data:  data_with_epi_toc$tnsc2 by all_data$Sample_Group
+# Kruskal-Wallis chi-squared = 18.718, df = 2, p-value = 8.618e-05
+# 
+# data:  data_with_epi_toc$irS by all_data$Sample_Group
+# Kruskal-Wallis chi-squared = 11.547, df = 2, p-value = 0.003108
+# 
+# data:  data_with_epi_toc$irS2 by all_data$Sample_Group
+# Kruskal-Wallis chi-squared = 3.5942, df = 2, p-value = 0.1658
+# 
+# data:  data_with_epi_toc$pcgtAge by all_data$Sample_Group
+# Kruskal-Wallis chi-squared = 15.615, df = 2, p-value = 0.0004067
+# 
+# data:  data_with_epi_toc$hypoSC by all_data$Sample_Group
+# Kruskal-Wallis chi-squared = 12.155, df = 2, p-value = 0.002294
+
+
+
+install.packages("FSA")
+library(FSA)
+
+dunnTest(data_with_epi_toc$tnsc ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+dunnTest(data_with_epi_toc$tnsc2 ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+dunnTest(data_with_epi_toc$irS ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+dunnTest(data_with_epi_toc$pcgtAge ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+dunnTest(data_with_epi_toc$hypoSC ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+
+# > dunnTest(data_with_epi_toc$tnsc ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+
+# Comparison         Z      P.unadj        P.adj
+# 1 MEN1 - Sporadic -3.215216 0.0013034648 0.0039103944
+# 2      MEN1 - VHL  1.747484 0.0805533846 0.2416601537
+# 3  Sporadic - VHL  3.735048 0.0001876798 0.0005630393
+
+# > dunnTest(data_with_epi_toc$tnsc2 ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+# 
+# Comparison         Z      P.unadj        P.adj
+# 1 MEN1 - Sporadic -3.219178 0.0012855870 0.0038567611
+# 2      MEN1 - VHL  1.734853 0.0827668552 0.2483005655
+# 3  Sporadic - VHL  3.724800 0.0001954698 0.0005864093
+
+# > dunnTest(data_with_epi_toc$irS ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+# Comparison         Z     P.unadj      P.adj
+# 1 MEN1 - Sporadic -2.573721 0.010061123 0.03018337
+# 2      MEN1 - VHL  1.299561 0.193751541 0.58125462
+# 3  Sporadic - VHL  2.890132 0.003850799 0.01155240
+
+# > dunnTest(data_with_epi_toc$pcgtAge ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+# Comparison         Z      P.unadj       P.adj
+# 1 MEN1 - Sporadic -2.852507 0.0043375888 0.013012766
+# 2      MEN1 - VHL  1.701817 0.0887896069 0.266368821
+# 3  Sporadic - VHL  3.465830 0.0005285979 0.001585794
+
+# > dunnTest(data_with_epi_toc$hypoSC ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+# Comparison         Z     P.unadj      P.adj
+# 1 MEN1 - Sporadic  2.756337 0.005845280 0.01753584
+# 2      MEN1 - VHL -1.162560 0.245007915 0.73502375
+# 3  Sporadic - VHL -2.864980 0.004170352 0.01251105
+# Warning message:
+#   all_data$Sample_Group was coerced to a factor. 
+
+dunnTest(data_with_epi_toc$irS2 ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
+
+write.csv(data_with_epi_toc, "data_with_epi_toc.csv")
 
 
