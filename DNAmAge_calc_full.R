@@ -960,6 +960,105 @@ dunnTest(data_with_epi_toc$hypoSC ~ all_data$Sample_Group, data = data_with_epi_
 
 dunnTest(data_with_epi_toc$irS2 ~ all_data$Sample_Group, data = data_with_epi_toc, method="bonferroni")
 
-write.csv(data_with_epi_toc, "data_with_epi_toc.csv")
+write.csv(data_with_epi_toc, "./data_with_epi_toc.csv")
+
+############# PNET 
+pnet_data <- subset(data_with_epi_toc, data_with_epi_toc$Site=='PNET')
+
+kruskal.test(pnet_data$Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$ageAcc.Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$ageAcc2.Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$ageAcc3.Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$Levine ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$ageAcc.Levine ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$ageAcc2.Levine ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$ageAcc3.Levine ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$tnsc ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$tnsc2 ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$irS ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$irS2 ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$pcgtAge ~ pnet_data$Sample_Group, data = pnet_data)
+kruskal.test(pnet_data$hypoSC ~ pnet_data$Sample_Group, data = pnet_data)
+
+# > kruskal.test(pnet_data$Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$Horvath by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 3.3744, df = 2, p-value = 0.185
+# 
+# > kruskal.test(pnet_data$ageAcc.Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$ageAcc.Horvath by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 3.9585, df = 2, p-value = 0.1382
+# 
+# > kruskal.test(pnet_data$ageAcc2.Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$ageAcc2.Horvath by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 2.8474, df = 2, p-value = 0.2408
+# 
+# > kruskal.test(pnet_data$ageAcc3.Horvath ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$ageAcc3.Horvath by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 3.5898, df = 2, p-value = 0.1661
+# 
+# > kruskal.test(pnet_data$Levine ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$Levine by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 0.44902, df = 2, p-value = 0.7989
+# 
+# > kruskal.test(pnet_data$ageAcc.Levine ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$ageAcc.Levine by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 4.9673, df = 2, p-value = 0.08344
+# 
+# > kruskal.test(pnet_data$ageAcc2.Levine ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$ageAcc2.Levine by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 1.3699, df = 2, p-value = 0.5041
+# 
+# > kruskal.test(pnet_data$ageAcc3.Levine ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$ageAcc3.Levine by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 1.6814, df = 2, p-value = 0.4314
+# 
+# > kruskal.test(pnet_data$tnsc ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$tnsc by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 7.0667, df = 2, p-value = 0.02921
+# 
+# > kruskal.test(pnet_data$tnsc2 ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$tnsc2 by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 7.0667, df = 2, p-value = 0.02921
+# 
+# > kruskal.test(pnet_data$irS ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$irS by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 2.6849, df = 2, p-value = 0.2612
+# 
+# > kruskal.test(pnet_data$irS2 ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$irS2 by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 0.13367, df = 2, p-value = 0.9354
+# 
+# > kruskal.test(pnet_data$pcgtAge ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$pcgtAge by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 5.7562, df = 2, p-value = 0.05624
+# 
+# > kruskal.test(pnet_data$hypoSC ~ pnet_data$Sample_Group, data = pnet_data)
+# data:  pnet_data$hypoSC by pnet_data$Sample_Group
+# Kruskal-Wallis chi-squared = 2.8199, df = 2, p-value = 0.2442
+
+dunnTest(pnet_data$tnsc ~ pnet_data$Sample_Group, data = pnet_data, method="bonferroni")
+dunnTest(pnet_data$tnsc2 ~ pnet_data$Sample_Group, data = pnet_data, method="bonferroni")
+
+# > dunnTest(pnet_data$tnsc ~ pnet_data$Sample_Group, data = pnet_data, method="bonferroni")
+# Dunn (1964) Kruskal-Wallis multiple comparison
+# p-values adjusted with the Bonferroni method.
+# 
+# Comparison          Z    P.unadj      P.adj
+# 1 MEN1 - Sporadic -0.3100363 0.75653335 1.00000000
+# 2      MEN1 - VHL  2.3479016 0.01887951 0.05663852
+# 3  Sporadic - VHL  2.4740500 0.01335910 0.04007730
+# Warning message:
+#   pnet_data$Sample_Group was coerced to a factor. 
+# > dunnTest(pnet_data$tnsc2 ~ pnet_data$Sample_Group, data = pnet_data, method="bonferroni")
+# Dunn (1964) Kruskal-Wallis multiple comparison
+# p-values adjusted with the Bonferroni method.
+# 
+# Comparison          Z    P.unadj      P.adj
+# 1 MEN1 - Sporadic -0.3100363 0.75653335 1.00000000
+# 2      MEN1 - VHL  2.3479016 0.01887951 0.05663852
+# 3  Sporadic - VHL  2.4740500 0.01335910 0.04007730
+# Warning message:
+#   pnet_data$Sample_Group was coerced to a factor. 
+
 
 
