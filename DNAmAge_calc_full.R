@@ -655,3 +655,106 @@ pairwise.t.test(no_negative_levine$ageAcc3.Levine, no_negative_levine$Sample_Gro
 # VHL      1.000 0.120   
 # 
 # P value adjustment method: bonferroni
+
+
+############### https://rdrr.io/github/metamaden/cgageR/man/getEpiTOC.html
+
+install.packages("remotes")
+remotes::install_github("metamaden/cgageR")
+library(cgageR)
+epi_toc <- getEpiTOC(beta,keepcpgs.epitoc=FALSE)
+
+est.ages <- getAgeR(beta,epitoc=TRUE,horvath=TRUE,hannum=TRUE,drift=FALSE,showStatusHannum=TRUE,
+                    keepcpgs.epitoc=TRUE,keepcpgs.hannum=TRUE,keepres=FALSE,chrage=NULL)
+# age_r <- getAgeR(beta, epitoc=TRUE, horvath=TRUE, hannum=TRUE, drift=TRUE, driftcg=NULL, chrage=NULL, showStatusHannum=FALSE, keepres=FALSE,keepcpgs.hannum=TRUE,
+#         keepcpgs.epitoc=TRUE,keepcpgs.horvath=TRUE)
+# epi_toc$EpiTOC.Est needs to be added to myDNAmagge...
+data_with_epi_toc <- cbind(myDNAmAge_with_acceleration_age_with_metadata, epi_toc$EpiTOC.Est)
+
+source("epiTOC2.r")
+epitoc2_with_age <- epiTOC2(beta, all_data$Age)
+
+data_with_epi_toc <- cbind(myDNAmAge_with_acceleration_age_with_metadata, epitoc2_with_age)
+
+####### checking if those are normal
+men1 = 'MEN1'
+shapiro.test(data_with_epi_toc$tnsc[data_with_epi_toc$Sample_Group==men1])
+shapiro.test(data_with_epi_toc$tnsc2[data_with_epi_toc$Sample_Group==men1])
+shapiro.test(data_with_epi_toc$pcgtAge[data_with_epi_toc$Sample_Group==men1])
+shapiro.test(data_with_epi_toc$hypoSC[data_with_epi_toc$Sample_Group==men1])
+shapiro.test(data_with_epi_toc$irS[data_with_epi_toc$Sample_Group==men1])
+shapiro.test(data_with_epi_toc$irS2[data_with_epi_toc$Sample_Group==men1])
+
+# data:  data_with_epi_toc$tnsc[data_with_epi_toc$Sample_Group == men1]
+# W = 0.86166, p-value = 0.0001235
+# 
+# data:  data_with_epi_toc$tnsc2[data_with_epi_toc$Sample_Group == men1]
+# W = 0.86106, p-value = 0.0001192
+# 
+# data:  data_with_epi_toc$pcgtAge[data_with_epi_toc$Sample_Group == men1]
+# W = 0.8512, p-value = 6.694e-05
+# 
+# data:  data_with_epi_toc$hypoSC[data_with_epi_toc$Sample_Group == men1]
+# W = 0.94195, p-value = 0.03344
+# 
+# data:  data_with_epi_toc$irS[data_with_epi_toc$Sample_Group == men1]
+# W = 0.94426, p-value = 0.04033
+# 
+# data:  data_with_epi_toc$irS2[data_with_epi_toc$Sample_Group == men1]
+# W = 0.96941, p-value = 0.3155
+
+sporadic = 'Sporadic'
+shapiro.test(data_with_epi_toc$tnsc[data_with_epi_toc$Sample_Group==sporadic])
+shapiro.test(data_with_epi_toc$tnsc2[data_with_epi_toc$Sample_Group==sporadic])
+shapiro.test(data_with_epi_toc$pcgtAge[data_with_epi_toc$Sample_Group==sporadic])
+shapiro.test(data_with_epi_toc$hypoSC[data_with_epi_toc$Sample_Group==sporadic])
+shapiro.test(data_with_epi_toc$irS[data_with_epi_toc$Sample_Group==sporadic])
+shapiro.test(data_with_epi_toc$irS2[data_with_epi_toc$Sample_Group==sporadic])
+
+
+# data:  data_with_epi_toc$tnsc[data_with_epi_toc$Sample_Group == sporadic]
+# W = 0.87569, p-value = 0.0002113
+# 
+# data:  data_with_epi_toc$tnsc2[data_with_epi_toc$Sample_Group == sporadic]
+# W = 0.87549, p-value = 0.0002086
+# 
+# data:  data_with_epi_toc$pcgtAge[data_with_epi_toc$Sample_Group == sporadic]
+# W = 0.85549, p-value = 6.044e-05
+# 
+# data:  data_with_epi_toc$hypoSC[data_with_epi_toc$Sample_Group == sporadic]
+# W = 0.9744, p-value = 0.4282
+# 
+# data:  data_with_epi_toc$irS[data_with_epi_toc$Sample_Group == sporadic]
+# W = 0.84548, p-value = 3.36e-05
+# 
+# data:  data_with_epi_toc$irS2[data_with_epi_toc$Sample_Group == sporadic]
+# W = 0.85044, p-value = 4.482e-05
+
+vhl = 'VHL'
+shapiro.test(data_with_epi_toc$tnsc[data_with_epi_toc$Sample_Group==vhl])
+shapiro.test(data_with_epi_toc$tnsc2[data_with_epi_toc$Sample_Group==vhl])
+shapiro.test(data_with_epi_toc$pcgtAge[data_with_epi_toc$Sample_Group==vhl])
+shapiro.test(data_with_epi_toc$hypoSC[data_with_epi_toc$Sample_Group==vhl])
+shapiro.test(data_with_epi_toc$irS[data_with_epi_toc$Sample_Group==vhl])
+shapiro.test(data_with_epi_toc$irS2[data_with_epi_toc$Sample_Group==vhl])
+
+
+# data:  data_with_epi_toc$tnsc[data_with_epi_toc$Sample_Group == vhl]
+# W = 0.92873, p-value = 0.4355
+# 
+# data:  data_with_epi_toc$tnsc2[data_with_epi_toc$Sample_Group == vhl]
+# W = 0.92836, p-value = 0.432
+# 
+# data:  data_with_epi_toc$pcgtAge[data_with_epi_toc$Sample_Group == vhl]
+# W = 0.84319, p-value = 0.04818
+# 
+# data:  data_with_epi_toc$hypoSC[data_with_epi_toc$Sample_Group == vhl]
+# W = 0.81846, p-value = 0.02427
+# 
+# data:  data_with_epi_toc$irS[data_with_epi_toc$Sample_Group == vhl]
+# W = 0.97716, p-value = 0.9482
+# 
+# data:  data_with_epi_toc$irS2[data_with_epi_toc$Sample_Group == vhl]
+# W = 0.89799, p-value = 0.2082
+
+
