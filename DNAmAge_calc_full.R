@@ -76,6 +76,7 @@ row_names_beta_sorted <- str_sort(row_names_beta)
 horvath_cgs_sorted <- str_sort(horvath_cgs)
 missing <- horvath_cgs_sorted %in% row_names_beta_sorted
 missing_horvath_cgs <- horvath_cgs_sorted[!missing]
+write.csv(missing_horvath_cgs, "./missing_horvath_cgs.csv")
 # > missing_horvath_cgs
 # [1] "cg02654291" "cg02972551" "cg04431054" "cg05590257" "cg06117855" "cg09785172" "cg09869858" "cg13682722" "cg14329157"
 # [10] "cg16494477" "cg17408647" "cg19046959" "cg19167673" "cg19273182" "cg19569684" "cg19945840" "cg24471894" "cg27016307"
@@ -662,7 +663,7 @@ pairwise.t.test(no_negative_levine$ageAcc3.Levine, no_negative_levine$Sample_Gro
 install.packages("remotes")
 remotes::install_github("metamaden/cgageR")
 library(cgageR)
-epi_toc <- getEpiTOC(beta,keepcpgs.epitoc=FALSE)
+epi_toc <- getEpiTOC(beta,keepcpgs.epitoc=TRUE)
 
 est.ages <- getAgeR(beta,epitoc=TRUE,horvath=TRUE,hannum=TRUE,drift=FALSE,showStatusHannum=TRUE,
                     keepcpgs.epitoc=TRUE,keepcpgs.hannum=TRUE,keepres=FALSE,chrage=NULL)
@@ -1040,7 +1041,7 @@ dunnTest(pnet_data$tnsc ~ pnet_data$Sample_Group, data = pnet_data, method="bonf
 dunnTest(pnet_data$tnsc2 ~ pnet_data$Sample_Group, data = pnet_data, method="bonferroni")
 
 # > dunnTest(pnet_data$tnsc ~ pnet_data$Sample_Group, data = pnet_data, method="bonferroni")
-# Dunn (1964) Kruskal-Wallis multiple comparison
+# Dדunn (1964) Kruskal-Wallis multiple comparison
 # p-values adjusted with the Bonferroni method.
 # 
 # Comparison          Z    P.unadj      P.adj
@@ -1060,5 +1061,49 @@ dunnTest(pnet_data$tnsc2 ~ pnet_data$Sample_Group, data = pnet_data, method="bon
 # Warning message:
 #   pnet_data$Sample_Group was coerced to a factor. 
 
+load("dataETOC2.Rd"); ## this loads the CpG information
+cpgETOC.v <- dataETOC2.l[[2]]
+estETOC2.m <- dataETOC2.l[[1]];
+soloCpG.v <- dataETOC2.l[[3]];
+load_DNAm_Clocks_data()
+horvath_cgs <- coefHorvath[-1,1]
+levine_cgs <- coefLevine[-1,1]
 
+install.packages("VennDiagram")
+library(VennDiagram)
+venn.diagram(
+  x = list(cpgETOC.v, horvath_cgs, levine_cgs),
+  euler.d=TRUE,
+  scaled=TRUE,
+  category.names = c("ETOC" , "Horvath" , "Levine"),
+  fill = c("lightblue", "green","red"),
+  alpha = c(0.5, 0.5, 0.5),
+  lwd =1,
+  filename = '#14_venn_diagramm.png',
+  output=TRUE
+
+)
+
+grid.newpage()                    # Create new plotting page
+draw.pairwise.venn(area1 = 10,    # Draw pairwise venn diagram
+                   area2 = 75,
+                   cross.area = 4)
+
+grid.newpage();
+venn.plot <- draw.triple.venn(
+  area1 = 385,
+  area2 = 353,
+  area3 = 513,
+  n12 = 1,
+  n23 = 1,
+  n13 = 0,
+  n123 = 0,
+  category = c("First", "Second", "Third"),
+  fill = c("blue", "red", "green"),
+  lty = "blank",
+  cex = 2,
+  cat.cex = 2,
+  cat.col = c("blue", "red", "green")
+);
+grid.draw(venn.plot);
 
