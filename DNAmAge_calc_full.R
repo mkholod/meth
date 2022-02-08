@@ -60,9 +60,11 @@ colnames(dataOnly) = headers
 metadata_file <- dataOnly
 
 # calculate ageAcceleration as specified in 4.2 in https://www.bioconductor.org/packages/devel/bioc/vignettes/methylclock/inst/doc/methylclock.html
-myDNAmAge_with_acceleration_age <- DNAmAge(beta, age=metadata_file$Age, cell.count=TRUE)
-cpgs.missing <- checkClocks(myDNAmAge_with_acceleration_age)
-cpgs.missing.GA <- checkClocksGA(myDNAmAge_with_acceleration_age)
+myDNAmAge_with_acceleration_age <- DNAmAge(beta, age=metadata_file$Age, cell.count=TRUE, normalize = FALSE)
+myDNAmAge_with_acceleration_age_normalized <- DNAmAge(beta, age=metadata_file$Age, cell.count=TRUE, normalize = TRUE)
+all_data <- myDNAmAge_with_acceleration_age_normalized
+cpgs.missing <- checkClocks(all_data)
+cpgs.missing.GA <- checkClocksGA(all_data)
 
 ###
 load_DNAm_Clocks_data()
@@ -107,9 +109,9 @@ write.csv(levine_beta, "levine_beta.csv")
 ###
 
 # bind metadata with the DNAmAge
-myDNAmAge_with_acceleration_age_with_metadata <- cbind(myDNAmAge_with_acceleration_age, metadata_file)
+all_data_with_metadata <- cbind(all_data, metadata_file)
 
-write.csv(myDNAmAge_with_acceleration_age_with_metadata, "csv/myDNAmAge_with_acceleration_age_with_metadata.csv")
+write.csv(all_data_with_metadata, "csv/myDNAmAge_with_acceleration_age_normalized_with_metadata.csv")
 
 # remove unneeded columns
 drop_cols <- c("PedBE", "Wu", "TL", "BNN")
@@ -183,7 +185,7 @@ is_filter_negative_calculated_age = TRUE
 # To perform a TTEST for acceleration1 for Hovarth and Levine
 # And check if there is a difference between Sporadic and Vhl
 # using https://www.youtube.com/watch?v=RlhnNbPZC0A&ab_channel=MarinStatsLectures-RProgramming%26Statistics
-all_data = myDNAmAge_with_acceleration_age_with_metadata
+all_data = all_data_with_metadata
 # boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Levine ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
 # boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Horvath ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
 
