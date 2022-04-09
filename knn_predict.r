@@ -23,10 +23,15 @@ train_len <- as.integer(metadata_sample_group_len * train_coef)
 train_target <- as.integer(as.factor(metadata_sample_group[1:train_len]))
 test_target <- as.integer(as.factor(metadata_sample_group[(train_len + 1):metadata_sample_group_len]))
 
-csv_dir <- file.path(getwd(), "")
-beta_csv_path <- file.path(csv_dir, "beta.csv") 
-beta <- read.csv(file=beta_csv_path, row.names = 1, nrows=100000) # remove nrows to have all the betas
-# beta <- read.csv(file=beta_csv_path, row.names = 1) 
+csv_dir <- file.path(getwd(), "csv")
+beta_csv_path <- file.path(csv_dir, "horvath_beta.csv") 
+
+# lines_to_keep <- 100000
+# total_lines <- R.utils::countLines(beta_csv_path) # 866092
+# total_lines <- 866092
+# beta <- read.csv(file=beta_csv_path, row.names = 1, skip=total_lines-lines_to_keep)
+# beta <- read.csv(file=beta_csv_path, row.names = 1, nrows=100000) # remove nrows to have all the betas
+beta <- read.csv(file=beta_csv_path, row.names = 1)
 beta_without_na <- na.omit(beta) # remove cgX which have NA values since KNN needs to have full data
 
 # transpose so we have a row of a single patient instead of a column
@@ -37,22 +42,22 @@ data_frame <- data.frame(t(beta_without_na))
 
 # normalize to have distributed values between 0 and 1
 data_frame_norm <- as.data.frame(lapply(data_frame, min_max_norm))
-# which(is.na(data_frame_norm) - make sure there are no NA
+which(is.na(data_frame_norm)) # make sure there are no NA
 
 train_set <- data_frame_norm[1:train_len, ]
 test_set <- data_frame_norm[(train_len + 1):metadata_sample_group_len, ]
 
 require(class)
-classifier_knn <- knn(train=train_set, test=test_set, cl=train_target, k=9)
+classifier_knn <- knn(train=train_set, test=test_set, cl=train_target, k=3)
 m1_table <- table(test_target, classifier_knn)
 misClassError <- mean(classifier_knn != test_target)
 print(paste('Accuracy =', 1-misClassError))
 
-# [1] "Accuracy = 0.8"
+# [1] "Accuracy = 0.7"
 # > m1_table
 # classifier_knn
 # test_target 1 2 3
-#           1 4 0 0
+#           1 3 1 0
 #           2 2 3 0
-#           3 0 0 1
+
 
