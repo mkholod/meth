@@ -24,7 +24,7 @@ train_target <- as.integer(as.factor(metadata_sample_group[1:train_len]))
 test_target <- as.integer(as.factor(metadata_sample_group[(train_len + 1):metadata_sample_group_len]))
 
 csv_dir <- file.path(getwd(), "csv")
-beta_csv_path <- file.path(csv_dir, "horvath_beta.csv") 
+beta_csv_path <- file.path(csv_dir, "levine_beta.csv") 
 
 # lines_to_keep <- 100000
 # total_lines <- R.utils::countLines(beta_csv_path) # 866092
@@ -48,16 +48,17 @@ train_set <- data_frame_norm[1:train_len, ]
 test_set <- data_frame_norm[(train_len + 1):metadata_sample_group_len, ]
 
 require(class)
-classifier_knn <- knn(train=train_set, test=test_set, cl=train_target, k=3)
+classifier_knn <- knn(train=train_set, test=test_set, cl=train_target, k=5)
 m1_table <- table(test_target, classifier_knn)
 misClassError <- mean(classifier_knn != test_target)
 print(paste('Accuracy =', 1-misClassError))
 
-# [1] "Accuracy = 0.7"
+# [1] "Accuracy = 0.6"
 # > m1_table
 # classifier_knn
 # test_target 1 2 3
 #           1 3 1 0
-#           2 2 3 0
+#           2 3 2 0
+#           3 0 0 1
 
 
