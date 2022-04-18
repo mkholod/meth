@@ -190,6 +190,7 @@ all_data = all_data_with_metadata
 # boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Horvath ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
 
 t.test(all_data$Horvath[all_data$Sample_Group == "Sporadic"], all_data$Horvath[all_data$Sample_Group == "VHL"])
+boxplot(all_data$ageAcc.Levine ~ all_data$Sample_Group, xlab="", ylab="Age Acc Levine", notch = FALSE)
 
 # data:  all_data$Horvath[all_data$Sample_Group == "Sporadic"] and all_data$Horvath[all_data$Sample_Group == "VHL"]
 # t = 0.81329, df = 15.477, p-value = 0.4284
@@ -585,6 +586,8 @@ summary(Anova_Results)
 
 Anova_Results <- aov(all_data$ageAcc2.Levine ~ all_data$Sample_Group, data=all_data)
 summary(Anova_Results)
+boxplot(all_data$ageAcc2.Levine ~ all_data$Sample_Group, xlab="Anova 0.0455 *", ylab="Age Acc2 Levine", notch = FALSE)
+
 
 # Df Sum Sq Mean Sq F value Pr(>F)  
 # all_data$Sample_Group  2   1829   914.3   3.196 0.0455 *
@@ -594,6 +597,8 @@ summary(Anova_Results)
 
 Anova_Results <- aov(all_data$ageAcc3.Levine ~ all_data$Sample_Group, data=all_data)
 summary(Anova_Results)
+boxplot(all_data$ageAcc3.Levine ~ all_data$Sample_Group, xlab="Anova 0.0147 *", ylab="Age Acc3 Levine", notch = FALSE)
+
 
 # Df Sum Sq Mean Sq F value Pr(>F)  
 # all_data$Sample_Group  2   2100  1050.2   4.419 0.0147 *
@@ -672,12 +677,12 @@ est.ages <- getAgeR(beta,epitoc=TRUE,horvath=TRUE,hannum=TRUE,drift=FALSE,showSt
 # age_r <- getAgeR(beta, epitoc=TRUE, horvath=TRUE, hannum=TRUE, drift=TRUE, driftcg=NULL, chrage=NULL, showStatusHannum=FALSE, keepres=FALSE,keepcpgs.hannum=TRUE,
 #         keepcpgs.epitoc=TRUE,keepcpgs.horvath=TRUE)
 # epi_toc$EpiTOC.Est needs to be added to myDNAmagge...
-data_with_epi_toc <- cbind(myDNAmAge_with_acceleration_age_with_metadata, epi_toc$EpiTOC.Est)
+data_with_epi_toc <- cbind(all_data, epi_toc$EpiTOC.Est)
 
 source("epiTOC2.r")
 epitoc2_with_age <- epiTOC2(beta, all_data$Age)
 
-data_with_epi_toc <- cbind(myDNAmAge_with_acceleration_age_with_metadata, epitoc2_with_age)
+data_with_epi_toc <- cbind(all_data, epitoc2_with_age)
 
 ####### checking if those are normal
 men1 = 'MEN1'
@@ -888,6 +893,8 @@ bartlett.test(data_with_epi_toc$hypoSC ~ all_data$Sample_Group, data = data_with
 # Bartlett's K-squared = 5.3873, df = 2, p-value = 0.06763
 
 kruskal.test(data_with_epi_toc$tnsc ~ all_data$Sample_Group, data = data_with_epi_toc)
+boxplot(data_with_epi_toc$tnsc ~ all_data$Sample_Group, xlab="Anova 0.0455 *", ylab="data_with_epi_toc$tnsc", notch = FALSE)
+
 kruskal.test(data_with_epi_toc$tnsc2 ~ all_data$Sample_Group, data = data_with_epi_toc)
 kruskal.test(data_with_epi_toc$irS ~ all_data$Sample_Group, data = data_with_epi_toc)
 kruskal.test(data_with_epi_toc$irS2 ~ all_data$Sample_Group, data = data_with_epi_toc)
@@ -1083,7 +1090,19 @@ venn.diagram(
   lwd =1,
   filename = '#14_venn_diagramm.png',
   output=TRUE
+)
 
+# creating venn diagramm for Horvath and Levine only
+venn.diagram(
+  x = list(horvath_cgs, levine_cgs),
+  euler.d=TRUE,
+  scaled=TRUE,
+  category.names = c("Horvath" , "Levine"),
+  fill = c("lightblue", "green"),
+  alpha = c(0.5, 0.5),
+  lwd =1,
+  filename = '#10_venn_diagramm_levine_horvath_only.png',
+  output=TRUE
 )
 
 grid.newpage()                    # Create new plotting page
