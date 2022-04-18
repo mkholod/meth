@@ -1098,7 +1098,7 @@ venn.diagram(
   euler.d=TRUE,
   scaled=TRUE,
   category.names = c("Horvath" , "Levine"),
-  fill = c("lightblue", "green"),
+  # fill = c("lightblue", "green"),
   alpha = c(0.5, 0.5),
   lwd =1,
   filename = '#10_venn_diagramm_levine_horvath_only.png',
