@@ -6,7 +6,7 @@ install.packages(c("tidyverse", "impute", "Rcpp"))
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 
-BiocManager::install("methylclock")
+BiocManager::install("methylclock", force = TRUE)
 
 # using this guide 
 # https://bioconductor.org/packages/release/bioc/vignettes/minfi/inst/doc/minfi.html
@@ -31,6 +31,7 @@ MSet <- preprocessRaw(RGSet)
 RSet <- ratioConvert(MSet, what = "both", keepCN = TRUE)
 beta <- getBeta(RSet)
 write.csv(beta, "./beta.csv")
+#beta <- read.csv("./beta.csv")
 
 # from 
 # https://www.bioconductor.org/packages/devel/bioc/vignettes/methylclock/inst/doc/methylclock.html
@@ -120,7 +121,7 @@ write.csv(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn, "my
 
 
 #plot 
-# plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Horvath, metadata_file$Age)
+plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Horvath, metadata_file$Age)
 # plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Hannum, metadata_file$Age, tit="Hannum")
 # plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Levine, metadata_file$Age, tit="Levine")
 # plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$skinHorvath, metadata_file$Age, tit="skinHorvath")
@@ -133,7 +134,14 @@ filter_MEN1 <- subset(myData, Sample_Group == "MEN1")
 filter_VHL <- subset(myData, Sample_Group == "VHL")
 rownames(filter_sporadic) <- NULL
 
-# plotDNAmAge(filter_sporadic$Horvath, filter_sporadic$Age, tit="Hovarth (sporadic)")
+p <- plotDNAmAge(filter_sporadic$Horvath, filter_sporadic$Age, tit="Horvarth (sporadic)")
+p + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic"),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+)
+
+
 # plotDNAmAge(filter_MEN1$Horvath, filter_MEN1$Age, tit="Hovarth (MEN1)")
 # plotDNAmAge(filter_VHL$Horvath, filter_VHL$Age, tit="Hovarth (VHL)")
 
@@ -186,7 +194,7 @@ is_filter_negative_calculated_age = TRUE
 # And check if there is a difference between Sporadic and Vhl
 # using https://www.youtube.com/watch?v=RlhnNbPZC0A&ab_channel=MarinStatsLectures-RProgramming%26Statistics
 all_data = all_data_with_metadata
-# boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Levine ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
+boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Levine ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
 # boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Horvath ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
 
 t.test(all_data$Horvath[all_data$Sample_Group == "Sporadic"], all_data$Horvath[all_data$Sample_Group == "VHL"])
