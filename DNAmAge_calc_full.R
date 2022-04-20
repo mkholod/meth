@@ -121,9 +121,21 @@ write.csv(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn, "my
 
 
 #plot 
-plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Horvath, metadata_file$Age)
-# plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Hannum, metadata_file$Age, tit="Hannum")
-# plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Levine, metadata_file$Age, tit="Levine")
+p1 <- plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Horvath, metadata_file$Age)
+
+p1 + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic", text("title")),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+) + labs(title="Horvath", x ="Horvath DNA methylation age", y = "Measured age")
+
+# p2 <- plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Hannum, metadata_file$Age, tit="Hannum")
+p2 <- plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$Levine, metadata_file$Age, tit="Levine")
+p2 + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic", text("title")),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+) + labs(title="Levine", x ="Levine DNA methylation age", y = "Measured age")
 # plotDNAmAge(myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn$skinHorvath, metadata_file$Age, tit="skinHorvath")
 
 
@@ -134,24 +146,52 @@ filter_MEN1 <- subset(myData, Sample_Group == "MEN1")
 filter_VHL <- subset(myData, Sample_Group == "VHL")
 rownames(filter_sporadic) <- NULL
 
-p <- plotDNAmAge(filter_sporadic$Horvath, filter_sporadic$Age, tit="Horvarth (sporadic)")
+p <- plotDNAmAge(filter_sporadic$Horvath, filter_sporadic$Age, tit="Horvarth sporadic")
 p + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic"),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-)
+) + labs(title="Horvath sporadic", x ="Horvath DNA methylation age", y = "Measured age")
 
 
-# plotDNAmAge(filter_MEN1$Horvath, filter_MEN1$Age, tit="Hovarth (MEN1)")
-# plotDNAmAge(filter_VHL$Horvath, filter_VHL$Age, tit="Hovarth (VHL)")
+p3 <- plotDNAmAge(filter_MEN1$Horvath, filter_MEN1$Age, tit="Hovarth (MEN1)")
+p3 + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic"),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+) + labs(title="Horvath MEN1", x ="Horvath DNA methylation age", y = "Measured age")
+
+p4 <- plotDNAmAge(filter_VHL$Horvath, filter_VHL$Age, tit="Hovarth (VHL)")
+p4 + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic"),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+) + labs(title="Horvath VHL", x ="Horvath DNA methylation age", y = "Measured age")
 
 # plotDNAmAge(filter_sporadic$Hannum, filter_sporadic$Age, tit="Hannum (sporadic)")
 # plotDNAmAge(filter_MEN1$Hannum, filter_MEN1$Age, tit="Hannum (MEN1)")
 # plotDNAmAge(filter_VHL$Hannum, filter_VHL$Age, tit="Hannum (VHL)")
 
-# plotDNAmAge(filter_sporadic$Levine, filter_sporadic$Age, tit="Levine (sporadic)")
-# plotDNAmAge(filter_MEN1$Levine, filter_MEN1$Age, tit="Levine (MEN1)")
-# plotDNAmAge(filter_VHL$Levine, filter_VHL$Age, tit="Levine (VHL)")
+p5 <- plotDNAmAge(filter_sporadic$Levine, filter_sporadic$Age, tit="Levine (sporadic)")
+p5 + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic"),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+) + labs(title="Levine sporadic", x ="Levine DNA methylation age", y = "Measured age")
+
+p6 <- plotDNAmAge(filter_MEN1$Levine, filter_MEN1$Age, tit="Levine (MEN1)")
+p6 + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic"),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+) + labs(title="Levine MEN1", x ="Levine DNA methylation age", y = "Measured age")
+
+p7 <- plotDNAmAge(filter_VHL$Levine, filter_VHL$Age, tit="Levine (VHL)")
+p7 + theme(
+  plot.title = element_text(color="black", size=30, face="bold.italic"),
+  axis.title.x = element_text(color="black", size=14, face="bold"),
+  axis.title.y = element_text(color="black", size=14, face="bold"),
+) + labs(title="Levine VHL", x ="Levine DNA methylation age", y = "Measured age")
 
 # plotDNAmAge(filter_sporadic$skinHorvath, filter_sporadic$Age, tit="skinHorvath (sporadic)")
 # plotDNAmAge(filter_MEN1$skinHorvath, filter_MEN1$Age, tit="skinHorvath (MEN1)")
