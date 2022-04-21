@@ -14,11 +14,10 @@ headers = read.csv(path, skip = 7, header = F, nrows = 1, as.is = T)
 
 colnames(dataOnly) = headers
 t1 <- dataOnly
-t1$anymet_status <- factor(t1$AnyMet, 
+t1$Metastasis <- factor(t1$AnyMet, 
                                     levels=c('Yes','No'),
-                                    labels=c("Metastasis found", # Reference
-                                             "No metastasis"
+                                    labels=c('Yes', 'No' # Reference
                                              ))
 
-table1(~ Age + Sample_Group + Gender | anymet_status , data=t1)
+table1(~ Age + Gender + Metastasis | Sample_Group , data=t1)
 
