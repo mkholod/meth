@@ -234,11 +234,20 @@ is_filter_negative_calculated_age = TRUE
 # And check if there is a difference between Sporadic and Vhl
 # using https://www.youtube.com/watch?v=RlhnNbPZC0A&ab_channel=MarinStatsLectures-RProgramming%26Statistics
 all_data = all_data_with_metadata
-boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Levine ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
+res <- boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Levine ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
+dat1 <- as.numeric(formatC(res$stats[,1], digits = 2, format = "f"))
+text(y=fivenum(dat1),labels=dat1,x=1.5)
+dat2 <- as.numeric(formatC(res$stats[,2], digits = 2, format = "f"))
+text(y=fivenum(dat2),labels=dat2,x=2.5)
+dat3 <- as.numeric(formatC(res$stats[,3], digits = 2, format = "f"))
+text(fivenum(dat3),labels=dat3,x=3.5)
+
 # boxplot(myDNAmAge_with_acceleration_age_with_metadata$ageAcc.Horvath ~ myDNAmAge_with_acceleration_age_with_metadata$Sample_Group)
 
 t.test(all_data$Horvath[all_data$Sample_Group == "Sporadic"], all_data$Horvath[all_data$Sample_Group == "VHL"])
 boxplot(all_data$ageAcc.Levine ~ all_data$Sample_Group, xlab="", ylab="Age Acc Levine", notch = FALSE)
+boxplot(all_data$ageAcc.Horvath ~ all_data$Sample_Group, xlab="", ylab="Age Acc Horvath", notch = FALSE)
+
 
 # data:  all_data$Horvath[all_data$Sample_Group == "Sporadic"] and all_data$Horvath[all_data$Sample_Group == "VHL"]
 # t = 0.81329, df = 15.477, p-value = 0.4284
