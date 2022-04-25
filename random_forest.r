@@ -402,12 +402,50 @@ ggplot(data=oob.error.horvath_sporadic_men1_rf, aes(x=Trees, y=Error)) + geom_li
 # Yes  9  55   0.1406250
 ####################
 
+########################## HORVATH SPORADIC + VHL ONLY
+
+horvath_sporadic_vhl <- horvath_data_frame_norm[horvath_data_frame_norm$Sample_Group != 'Sporadic',]
+horvath_sporadic_vhl_rf <- randomForest(horvath_sporadic_vhl, horvath_sporadic_vhl$AnyMet, ntree=28, proximity = TRUE)
+
+oob.error.horvath_sporadic_vhl_rf <- data.frame(
+  Trees=rep(1:nrow(horvath_sporadic_vhl_rf$err.rate), times=3),
+  Type=rep(c("OOB", "Yes", "No"), each=nrow(horvath_sporadic_vhl_rf$err.rate)),
+  Error=c(horvath_sporadic_vhl_rf$err.rate[,"OOB"],
+          horvath_sporadic_vhl_rf$err.rate[,"Yes"],
+          horvath_sporadic_vhl_rf$err.rate[,"No"]))
+
+ggplot(data=oob.error.horvath_sporadic_vhl_rf, aes(x=Trees, y=Error)) + geom_line(aes(color=Type))
+
+# Call:
+#   randomForest(x = horvath_sporadic_vhl, y = horvath_sporadic_vhl$AnyMet,      ntree = 37, proximity = TRUE) 
+# Type of random forest: classification
+# Number of trees: 37
+# No. of variables tried at each split: 18
+# 
+# OOB estimate of  error rate: 24.07%
+# Confusion matrix:
+#   No Yes class.error
+# No  10   9   0.4736842
+# Yes  4  31   0.1142857
+
+### HORVATH MEN1 VHL
+
+# Type of random forest: classification
+# Number of trees: 28
+# No. of variables tried at each split: 18
+# 
+# OOB estimate of  error rate: 21.15%
+# Confusion matrix:
+#   No Yes class.error
+# No   8   7   0.4666667
+# Yes  4  33   0.1081081
+
 ########################## LEVINE SPORADIC + MEN1 ONLY
 
 levine_data_frame_norm$Sample_Group <- metadata_file$Sample_Group
 levine_data_frame_norm$AnyMet <- as.factor(metadata_file$AnyMet)
-levine_sporadic_men1 <- levine_data_frame_norm[levine_data_frame_norm$Sample_Group != 'VHL',]
-levine_sporadic_men1_rf <- randomForest(levine_sporadic_men1, levine_sporadic_men1$AnyMet, ntree=21, proximity = TRUE)
+levine_sporadic_men1 <- levine_data_frame_norm[levine_data_frame_norm$Sample_Group != 'Sporadic',]
+levine_sporadic_men1_rf <- randomForest(levine_sporadic_men1, levine_sporadic_men1$AnyMet, ntree=23, proximity = TRUE)
 
 oob.error.levine_sporadic_men1_rf <- data.frame(
   Trees=rep(1:nrow(levine_sporadic_men1_rf$err.rate), times=3),
@@ -430,7 +468,29 @@ ggplot(data=oob.error.levine_sporadic_men1_rf, aes(x=Trees, y=Error)) + geom_lin
 # No   6  16   0.7272727
 # Yes  3  61   0.0468750
 
-########################## 
+########################## LEVINE SPORADIC VHL
+
+# Type of random forest: classification
+# Number of trees: 48
+# No. of variables tried at each split: 22
+# 
+# OOB estimate of  error rate: 25.93%
+# Confusion matrix:
+#   No Yes class.error
+# No   8  11  0.57894737
+# Yes  3  32  0.08571429
+
+######## LEVINE MEN1 VHL
+
+# Type of random forest: classification
+# Number of trees: 23
+# No. of variables tried at each split: 22
+# 
+# OOB estimate of  error rate: 15.38%
+# Confusion matrix:
+#   No Yes class.error
+# No  10   5  0.33333333
+# Yes  3  34  0.08108108
 
 levine_men1 <- levine_data_frame_norm[levine_data_frame_norm$Sample_Group == 'MEN1',]
 levine_men1_rf <- randomForest(levine_men1, levine_men1$AnyMet, ntree=30, proximity = TRUE)
