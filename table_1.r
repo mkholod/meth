@@ -23,6 +23,7 @@ require(survival)
 
 ##### Now with Horvath and Levine ages
 
-data_with_clock <- read.csv("csv/myDNAmAge_with_acceleration_age_normalized_with_metadata.csv")
-names(data_with_clock)[names(data_with_clock) == "AnyMet"] <- "Metastasis"
-table1(~ Age + Gender + Metastasis + Horvath + Levine | Sample_Group , data=data_with_clock)
+data_with_clock <- read.csv("myDNAmAge_with_metadata_without_pedbe_wu_tl_bnn.csv")
+pnet_data_with_clock <- data_with_clock[data_with_clock$Site == "PNET",]
+names(pnet_data_with_clock)[names(pnet_data_with_clock) == "AnyMet"] <- "Metastasis"
+table1(~ Age + Gender + Metastasis + Horvath + Levine | Sample_Group , data=pnet_data_with_clock)
