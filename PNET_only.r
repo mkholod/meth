@@ -90,3 +90,13 @@ p7 + theme(
 
 boxplot(pnet_data$ageAcc.Levine ~ pnet_data$Sample_Group, xlab="", ylab="Age Acc Levine", notch = FALSE)
 boxplot(pnet_data$ageAcc.Horvath ~ pnet_data$Sample_Group, xlab="", ylab="Age Acc Horvath", notch = FALSE)
+
+### AUC and ROC
+# https://www.youtube.com/watch?v=qcvAqAH60Yw&ab_channel=StatQuestwithJoshStarmer
+# https://github.com/StatQuest/roc_and_auc_demo/blob/master/roc_and_auc_demo.R
+
+install.packages("pROC")
+library(pROC) # install with install.packages("pROC")
+
+install.packages("randomForest")
+library(randomForest)
