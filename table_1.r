@@ -34,7 +34,7 @@ my.render.cont <- function(x) {
 }
 
 setwd("c:/zz - private/meth/meth/meth")
-data_with_clock <- read.csv("myDNAmAge_with_metadata_without_pedbe_wu_tl_bnn.csv")
+data_with_clock <- read.csv("myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn.csv")
 names(data_with_clock)[names(data_with_clock) == "AnyMet"] <- "Metastasis"
 names(data_with_clock)[names(data_with_clock) == "Gender"] <- "Males"
 names(data_with_clock)[names(data_with_clock) == "Horvath"] <- "HMC"
@@ -70,7 +70,7 @@ write.csv(table1_pnet, "export_PNET/table1_pnet.csv")
 # data_with_clock$Males      <- data_with_clock$Males == "m"
 
 data_with_clock$Dis[data_with_clock$Dis == ''] <- 'No'
-dis_table1 <- table1(~ Age + HMC + LMC + Males + Metastasis  | 
+dis_table1 <- table1(~ Age + ageAcc.Horvath + ageAcc.Levine + HMC + LMC + Males + Metastasis  | 
                    Sample_Group + Dis, 
                  render = rndr,
                  render.continuous=my.render.cont,
@@ -141,6 +141,18 @@ chisq.test(dis_tbl_lmc_round)
 # data:  dis_tbl_lmc_round
 # X-squared = 67.146, df = 52, p-value = 0.07703
 
+dis_tbl_acc_horvath_round = table(round(data_with_clock$ageAcc.Horvath), data_with_clock$Dis)
+chisq.test(dis_tbl_acc_horvath_round) 
+
+# data:  dis_tbl_acc_horvath_round
+# X-squared = 54.892, df = 50, p-value = 0.2945
+
+dis_tbl_acc_levine_round = table(round(data_with_clock$ageAcc.Levine), data_with_clock$Dis)
+chisq.test(dis_tbl_acc_levine_round)
+
+# data:  dis_tbl_acc_levine_round
+# X-squared = 59.003, df = 54, p-value = 0.2977
+
 ######################################### MEN1 
 data_with_clock_men1 <- data_with_clock[data_with_clock$Sample_Group == "MEN1",]
 dis_tbl_men1 = table(data_with_clock_men1$Age, data_with_clock_men1$Dis)
@@ -178,6 +190,18 @@ chisq.test(dis_tbl_men1_lmc_round)
 
 # data:  dis_tbl_men1_lmc_round
 # X-squared = 33.091, df = 27, p-value = 0.1941
+
+dis_tbl_men1_acc_horvath_round = table(round(data_with_clock_men1$ageAcc.Horvath), data_with_clock_men1$Dis)
+chisq.test(dis_tbl_men1_acc_horvath_round) 
+
+# data:  dis_tbl_men1_acc_horvath_round
+# X-squared = 28.339, df = 26, p-value = 0.342
+
+dis_tbl_men1_acc_levine_round = table(round(data_with_clock_men1$ageAcc.Levine), data_with_clock_men1$Dis)
+chisq.test(dis_tbl_men1_acc_levine_round) 
+
+# data:  dis_tbl_men1_acc_levine_round
+# X-squared = 26.657, df = 26, p-value = 0.4275
 
 #################################################### SPORADIC 
 
@@ -218,6 +242,17 @@ chisq.test(dis_tbl_sporadic_lmc_round)
 # data:  dis_tbl_sporadic_lmc_round
 # X-squared = 33.244, df = 32, p-value = 0.4064
 
+dis_tbl_sporadic_acc_horvath_round = table(round(data_with_clock_sporadic$ageAcc.Horvath), data_with_clock_sporadic$Dis)
+chisq.test(dis_tbl_sporadic_acc_horvath_round) 
+
+# data:  dis_tbl_sporadic_acc_horvath_round
+# X-squared = 37.95, df = 35, p-value = 0.3364
+
+dis_tbl_sporadic_acc_levine_round = table(round(data_with_clock_sporadic$ageAcc.Levine), data_with_clock_sporadic$Dis)
+chisq.test(dis_tbl_sporadic_acc_levine_round) 
+
+# data:  dis_tbl_sporadic_acc_levine_round
+# X-squared = 35.933, df = 34, p-value = 0.378
 
 ## ++ Export table1 to csv
 ## ++ Export table1_pnet to csv
