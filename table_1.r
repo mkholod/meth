@@ -99,7 +99,7 @@ ln_table1 <- table1(~ Age + HMC + LMC + Males + Metastasis  |
 ln_table1
 write.csv(table1, "export_PNET/table1_ln.csv")
 
-#### chi test
+################################################################################## chi test
 # https://www.r-tutor.com/elementary-statistics/goodness-fit/chi-squared-test-independence
 library(MASS)
 dis_tbl = table(data_with_clock$Age, data_with_clock$Dis)
@@ -129,6 +129,19 @@ chisq.test(dis_tbl_lmc)
 # data:  dis_tbl_lmc
 # X-squared = 96, df = 95, p-value = 0.452
 
+dis_tbl_hmc_round = table(round(data_with_clock$HMC), data_with_clock$Dis)
+chisq.test(dis_tbl_hmc_round) 
+
+# data:  dis_tbl_hmc_round
+# X-squared = 55.841, df = 48, p-value = 0.2039
+
+dis_tbl_lmc_round = table(round(data_with_clock$LMC), data_with_clock$Dis)
+chisq.test(dis_tbl_lmc_round)
+
+# data:  dis_tbl_lmc_round
+# X-squared = 67.146, df = 52, p-value = 0.07703
+
+######################################### MEN1 
 data_with_clock_men1 <- data_with_clock[data_with_clock$Sample_Group == "MEN1",]
 dis_tbl_men1 = table(data_with_clock_men1$Age, data_with_clock_men1$Dis)
 chisq.test(dis_tbl_men1) 
@@ -154,6 +167,20 @@ chisq.test(dis_tbl_men1_lmc)
 # data:  dis_tbl_men1_lmc
 # X-squared = 42, df = 41, p-value = 0.4274
 
+dis_tbl_men1_hmc_round = table(round(data_with_clock_men1$HMC), data_with_clock_men1$Dis)
+chisq.test(dis_tbl_men1_hmc_round) 
+
+# data:  dis_tbl_men1_hmc_round
+# X-squared = 33.091, df = 27, p-value = 0.1941
+
+dis_tbl_men1_lmc_round = table(round(data_with_clock_men1$LMC), data_with_clock_men1$Dis)
+chisq.test(dis_tbl_men1_lmc_round) 
+
+# data:  dis_tbl_men1_lmc_round
+# X-squared = 33.091, df = 27, p-value = 0.1941
+
+#################################################### SPORADIC 
+
 data_with_clock_sporadic <- data_with_clock[data_with_clock$Sample_Group == "Sporadic",]
 dis_tbl_sporadic = table(data_with_clock_sporadic$Age, data_with_clock_sporadic$Dis)
 chisq.test(dis_tbl_sporadic) 
@@ -178,6 +205,18 @@ chisq.test(dis_tbl_sporadic_lmc)
 # 
 # data:  dis_tbl_sporadic_lmc
 # X-squared = 44, df = 43, p-value = 0.429
+
+dis_tbl_sporadic_hmc_round = table(round(data_with_clock_sporadic$HMC), data_with_clock_sporadic$Dis)
+chisq.test(dis_tbl_sporadic_hmc_round) 
+
+# data:  dis_tbl_sporadic_hmc_round
+# X-squared = 31.9, df = 31, p-value = 0.4216
+
+dis_tbl_sporadic_lmc_round = table(round(data_with_clock_sporadic$LMC), data_with_clock_sporadic$Dis)
+chisq.test(dis_tbl_sporadic_lmc_round) 
+
+# data:  dis_tbl_sporadic_lmc_round
+# X-squared = 33.244, df = 32, p-value = 0.4064
 
 
 ## ++ Export table1 to csv
