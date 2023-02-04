@@ -15,7 +15,7 @@ data <- read.csv("myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_
 setwd("c:/zz - private/meth/meth/meth/export_PNET")
 pnet_data <- data[data$Site == "PNET",]
 
-png("Horvath.png", width = 800, height = 600)
+png("pnet_horvath_all.png", width = 800, height = 600)
 plot.new()
 p1 <- plotDNAmAge(pnet_data$Horvath, pnet_data$Age, tit="Horvath")
 p1 + theme(
@@ -25,7 +25,7 @@ p1 + theme(
 ) + labs(title="Horvath", x ="HMC", y = "Chronological age")
 dev.off()
 
-png("Levine.png", width = 800, height = 600)
+png("pnet_levine_all.png", width = 800, height = 600)
 plot.new()
 p2 <- plotDNAmAge(pnet_data$Levine, pnet_data$Age, tit="Levine")
 p2 + theme(
@@ -40,7 +40,7 @@ filter_MEN1 <- subset(pnet_data, Sample_Group == "MEN1")
 filter_VHL <- subset(pnet_data, Sample_Group == "VHL")
 rownames(filter_sporadic) <- NULL
 
-png("Horvarth sporadic.png", width = 800, height = 600)
+png("pnet_horvath_sporadic.png", width = 800, height = 600)
 plot.new()
 p <- plotDNAmAge(filter_sporadic$Horvath, filter_sporadic$Age, tit="Horvarth sporadic")
 p + theme(
@@ -50,7 +50,7 @@ p + theme(
 ) + labs(title="Horvath sporadic", x ="HMC", y = "Chronological age")
 dev.off()
 
-png("Hovarth (MEN1).png", width = 800, height = 600)
+png("pnet_horvath_MEN1.png", width = 800, height = 600)
 plot.new()
 p3 <- plotDNAmAge(filter_MEN1$Horvath, filter_MEN1$Age, tit="Hovarth (MEN1)")
 p3 + theme(
@@ -60,7 +60,7 @@ p3 + theme(
 ) + labs(title="Horvath MEN1", x ="HMC", y = "Chronological age")
 dev.off()
 
-png("Hovarth (VHL).png", width = 800, height = 600)
+png("pnet_horvath_VHL.png", width = 800, height = 600)
 plot.new()
 p4 <- plotDNAmAge(filter_VHL$Horvath, filter_VHL$Age, tit="Hovarth (VHL)")
 p4 + theme(
@@ -70,7 +70,7 @@ p4 + theme(
 ) + labs(title="Horvath VHL", x ="HMC", y = "Chronological age")
 dev.off()
 
-png("Levine (sporadic).png", width = 800, height = 600)
+png("pnet_levine_sporadic.png", width = 800, height = 600)
 plot.new()
 p5 <- plotDNAmAge(filter_sporadic$Levine, filter_sporadic$Age, tit="Levine (sporadic)")
 p5 + theme(
@@ -80,7 +80,7 @@ p5 + theme(
 ) + labs(title="Levine sporadic", x ="LMC", y = "Chronological age")
 dev.off()
 
-png("Levine (MEN1).png", width = 800, height = 600)
+png("pnet_levine_MEN1.png", width = 800, height = 600)
 plot.new()
 p6 <- plotDNAmAge(filter_MEN1$Levine, filter_MEN1$Age, tit="Levine (MEN1)")
 p6 + theme(
@@ -90,7 +90,7 @@ p6 + theme(
 ) + labs(title="Levine MEN1", x ="LMC", y = "Chronological age")
 dev.off()
 
-png("Levine (VHL).png", width = 800, height = 600)
+png("pnet_levine_VHL.png", width = 800, height = 600)
 plot.new()
 p7 <- plotDNAmAge(filter_VHL$Levine, filter_VHL$Age, tit="Levine (VHL)")
 p7 + theme(
