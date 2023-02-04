@@ -110,8 +110,10 @@ dev.off()
 # dat3 <- as.numeric(formatC(res$stats[,3], digits = 2, format = "f"))
 # text(fivenum(dat3),labels=dat3,x=3.5)
 
+plot.new()
 boxplot(pnet_data$ageAcc.Levine ~ pnet_data$Sample_Group, xlab="", ylab="Age Acc Levine", notch = FALSE)
 boxplot(pnet_data$ageAcc.Horvath ~ pnet_data$Sample_Group, xlab="", ylab="Age Acc Horvath", notch = FALSE)
+dev.off()
 
 ### AUC and ROC
 # https://www.youtube.com/watch?v=qcvAqAH60Yw&ab_channel=StatQuestwithJoshStarmer
