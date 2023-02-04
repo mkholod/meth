@@ -8,75 +8,97 @@ library(ggplot2)
 library(ggpmisc)
 library(GEOquery)
 
-setwd("c:/zz - private/meth/meth/meth/")
+setwd("c:/zz - private/meth/meth/meth")
 
 data <- read.csv("myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn.csv")
+
+setwd("c:/zz - private/meth/meth/meth/export_PNET")
 pnet_data <- data[data$Site == "PNET",]
 
+png("Horvath.png", width = 800, height = 600)
 plot.new()
-
-# All tumors
-p1 <- plotDNAmAge(pnet_data$Horvath, pnet_data$Age)
+p1 <- plotDNAmAge(pnet_data$Horvath, pnet_data$Age, tit="Horvath")
 p1 + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic", text("title")),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Horvath", x ="Horvath DNA methylation age", y = "Measured age")
+) + labs(title="Horvath", x ="HMC", y = "Chronological age")
+dev.off()
 
+png("Levine.png", width = 800, height = 600)
+plot.new()
 p2 <- plotDNAmAge(pnet_data$Levine, pnet_data$Age, tit="Levine")
 p2 + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic", text("title")),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Levine", x ="Levine DNA methylation age", y = "Measured age")
+) + labs(title="Levine", x ="LMC", y = "Chronological age")
+dev.off()
 
 filter_sporadic <- subset(pnet_data, Sample_Group == "Sporadic")
 filter_MEN1 <- subset(pnet_data, Sample_Group == "MEN1")
 filter_VHL <- subset(pnet_data, Sample_Group == "VHL")
 rownames(filter_sporadic) <- NULL
 
+png("Horvarth sporadic.png", width = 800, height = 600)
+plot.new()
 p <- plotDNAmAge(filter_sporadic$Horvath, filter_sporadic$Age, tit="Horvarth sporadic")
 p + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic"),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Horvath sporadic", x ="Horvath DNA methylation age", y = "Measured age")
+) + labs(title="Horvath sporadic", x ="HMC", y = "Chronological age")
+dev.off()
 
-
+png("Hovarth (MEN1).png", width = 800, height = 600)
+plot.new()
 p3 <- plotDNAmAge(filter_MEN1$Horvath, filter_MEN1$Age, tit="Hovarth (MEN1)")
 p3 + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic"),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Horvath MEN1", x ="Horvath DNA methylation age", y = "Measured age")
+) + labs(title="Horvath MEN1", x ="HMC", y = "Chronological age")
+dev.off()
 
+png("Hovarth (VHL).png", width = 800, height = 600)
+plot.new()
 p4 <- plotDNAmAge(filter_VHL$Horvath, filter_VHL$Age, tit="Hovarth (VHL)")
 p4 + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic"),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Horvath VHL", x ="Horvath DNA methylation age", y = "Measured age")
+) + labs(title="Horvath VHL", x ="HMC", y = "Chronological age")
+dev.off()
 
+png("Levine (sporadic).png", width = 800, height = 600)
+plot.new()
 p5 <- plotDNAmAge(filter_sporadic$Levine, filter_sporadic$Age, tit="Levine (sporadic)")
 p5 + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic"),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Levine sporadic", x ="Levine DNA methylation age", y = "Measured age")
+) + labs(title="Levine sporadic", x ="LMC", y = "Chronological age")
+dev.off()
 
+png("Levine (MEN1).png", width = 800, height = 600)
+plot.new()
 p6 <- plotDNAmAge(filter_MEN1$Levine, filter_MEN1$Age, tit="Levine (MEN1)")
 p6 + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic"),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Levine MEN1", x ="Levine DNA methylation age", y = "Measured age")
+) + labs(title="Levine MEN1", x ="LMC", y = "Chronological age")
+dev.off()
 
+png("Levine (VHL).png", width = 800, height = 600)
+plot.new()
 p7 <- plotDNAmAge(filter_VHL$Levine, filter_VHL$Age, tit="Levine (VHL)")
 p7 + theme(
   plot.title = element_text(color="black", size=30, face="bold.italic"),
   axis.title.x = element_text(color="black", size=14, face="bold"),
   axis.title.y = element_text(color="black", size=14, face="bold"),
-) + labs(title="Levine VHL", x ="Levine DNA methylation age", y = "Measured age")
+) + labs(title="Levine VHL", x ="LMC", y = "Chronological age")
+dev.off()
 
 ##############
 # 
