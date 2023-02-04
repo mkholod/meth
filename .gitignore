@@ -39,7 +39,7 @@ vignettes/*.pdf
 .Renviron
 
 # ignore csv files
-*.csv
+#*.csv
 
 # Mac files
 .DS_Store
