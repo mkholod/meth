@@ -99,6 +99,85 @@ ln_table1 <- table1(~ Age + HMC + LMC + Males + Metastasis  |
 ln_table1
 write.csv(table1, "export_PNET/table1_ln.csv")
 
+#### chi test
+# https://www.r-tutor.com/elementary-statistics/goodness-fit/chi-squared-test-independence
+library(MASS)
+dis_tbl = table(data_with_clock$Age, data_with_clock$Dis)
+chisq.test(dis_tbl) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl
+# X-squared = 69.28, df = 34, p-value = 0.000332
+# 
+# Warning message:
+# In chisq.test(dis_tbl) : Chi-squared approximation may be incorrect
+
+dis_tbl_hmc = table(data_with_clock$HMC, data_with_clock$Dis)
+chisq.test(dis_tbl_hmc) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_hmc
+# X-squared = 96, df = 95, p-value = 0.452
+
+dis_tbl_lmc = table(data_with_clock$LMC, data_with_clock$Dis)
+chisq.test(dis_tbl_lmc) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_lmc
+# X-squared = 96, df = 95, p-value = 0.452
+
+data_with_clock_men1 <- data_with_clock[data_with_clock$Sample_Group == "MEN1",]
+dis_tbl_men1 = table(data_with_clock_men1$Age, data_with_clock_men1$Dis)
+chisq.test(dis_tbl_men1) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_men1
+# X-squared = 42, df = 12, p-value = 3.331e-05
+
+dis_tbl_men1_hmc = table(data_with_clock_men1$HMC, data_with_clock_men1$Dis)
+chisq.test(dis_tbl_men1_hmc) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_men1_hmc
+# X-squared = 42, df = 41, p-value = 0.4274
+
+dis_tbl_men1_lmc = table(data_with_clock_men1$LMC, data_with_clock_men1$Dis)
+chisq.test(dis_tbl_men1_lmc) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_men1_lmc
+# X-squared = 42, df = 41, p-value = 0.4274
+
+data_with_clock_sporadic <- data_with_clock[data_with_clock$Sample_Group == "Sporadic",]
+dis_tbl_sporadic = table(data_with_clock_sporadic$Age, data_with_clock_sporadic$Dis)
+chisq.test(dis_tbl_sporadic) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_sporadic
+# X-squared = 35.933, df = 28, p-value = 0.1443
+
+dis_tbl_sporadic_hmc = table(data_with_clock_sporadic$HMC, data_with_clock_sporadic$Dis)
+chisq.test(dis_tbl_sporadic_hmc) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_sporadic_hmc
+# X-squared = 44, df = 43, p-value = 0.429
+
+dis_tbl_sporadic_lmc = table(data_with_clock_sporadic$LMC, data_with_clock_sporadic$Dis)
+chisq.test(dis_tbl_sporadic_lmc) 
+
+# Pearson's Chi-squared test
+# 
+# data:  dis_tbl_sporadic_lmc
+# X-squared = 44, df = 43, p-value = 0.429
 
 
 ## ++ Export table1 to csv

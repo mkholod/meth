@@ -12,7 +12,7 @@ setwd("c:/zz - private/meth/meth/meth")
 
 data <- read.csv("myDNAmAge_with_acceleration_with_metadata_without_pedbe_wu_tl_bnn.csv")
 
-setwd("c:/zz - private/meth/meth/meth/export_PNET")
+psetwd("c:/zz - private/meth/meth/meth/export_PNET")
 pnet_data <- data[data$Site == "PNET",]
 
 png("pnet_horvath_all.png", width = 800, height = 600)
@@ -110,10 +110,14 @@ dev.off()
 # dat3 <- as.numeric(formatC(res$stats[,3], digits = 2, format = "f"))
 # text(fivenum(dat3),labels=dat3,x=3.5)
 
-plot.new()
+# all
+boxplot(data$ageAcc.Levine ~ data$Sample_Group, xlab="", ylab="Age Acc Levine", notch = FALSE)
+boxplot(data$ageAcc.Horvath ~ data$Sample_Group, xlab="", ylab="Age Acc Horvath", notch = FALSE)
+
+# pnet
 boxplot(pnet_data$ageAcc.Levine ~ pnet_data$Sample_Group, xlab="", ylab="Age Acc Levine", notch = FALSE)
 boxplot(pnet_data$ageAcc.Horvath ~ pnet_data$Sample_Group, xlab="", ylab="Age Acc Horvath", notch = FALSE)
-dev.off()
+
 
 ### AUC and ROC
 # https://www.youtube.com/watch?v=qcvAqAH60Yw&ab_channel=StatQuestwithJoshStarmer
