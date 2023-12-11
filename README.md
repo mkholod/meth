@@ -8,3 +8,9 @@ https://bioconductor.org/packages/release/bioc/vignettes/minfi/inst/doc/minfi.ht
 
 And then calculating DNAmAge using multi clocks from here
 https://www.bioconductor.org/packages/devel/bioc/vignettes/methylclock/inst/doc/methylclock.html
+
+------------------- 12.11.23 -
+
+https://github.com/mkholod/meth/blob/main/DNAmAge_calc_full.R
+* Reads the meth. arrays and converts them to beta.csv file
+* Calculates myDNAmAge_with_acceleration_age
